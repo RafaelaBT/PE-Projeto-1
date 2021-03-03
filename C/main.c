@@ -5,7 +5,7 @@
 #include "andares.h"
 
 int main(){
-  int resposta = 1, tamanho;
+  int resposta = 1, tamanho; 
   while (resposta != 0){ /*Enquanto o usuário quiser jogar.*/
     printf("\nATENÇÃO: Digite somente o número correspondente a opção.\n(1) JOGAR.\n(2) SAIR.\nRESPOSTA: ");
     scanf("%d",&resposta);
@@ -52,7 +52,7 @@ int main(){
                 resp = 1;
                 break;
             }
-          }
+          } 
         }
       /*Fim do jogo*/
       printf("\nPARABÉNS, VOCÊ ZEROU!");

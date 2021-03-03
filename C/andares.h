@@ -3,7 +3,7 @@
 /*Mecânica dos andares*/
 void andar(int n, int caminho){ /*pega o andar e o caminho do usuário (1 ou 2)*/
   int opcao;
-  switch(n){
+  switch(n){ 
     case 1: /*Andar 1*/
       if (caminho == 1){ /*Armadilha 1*/
         armadilha_1();
