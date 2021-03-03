@@ -5,9 +5,9 @@
 #include "andares.h"
 
 int main(){
-  int resposta = 1, tamanho; 
+  int resposta = 1, tamanho;
   while (resposta != 0){ /*Enquanto o usuário quiser jogar.*/
-    printf("\nATENÇÃO: Digite somente o número correspondente a opção.\n(1) JOGAR.\n(2) SAIR.\nRESPOSTA: ");
+    printf("\nATENCAO: DIGITE O NUMERO QUE CORRESPONDE A OPCAO.\n(1) JOGAR.\n(2) SAIR.\nRESPOSTA: ");
     scanf("%d",&resposta);
     printf("\n");
     switch(resposta){
@@ -31,7 +31,7 @@ int main(){
                 escolha = 0; /*Para o loop, vai para o próximo andar.*/
                 break;
               default: /*Caso a entrada seja inválida.*/
-                printf("\nOPÇÃO INVÁLIDA, TENTE NOVAMENTE.\n");
+                printf("\nOPCAO INVALIDA, TENTE NOVAMENTE.\n");
                 escolha = 1; /*Retorna ao loop*/
                 break;
             }
@@ -45,31 +45,31 @@ int main(){
                 resp = 0;
                 break;
               case 2: /*Encerra o programa.*/
-                printf("\nNOS VEMOS EM BREVE. ATÉ MAIS!\n");
+                printf("\nNOS VEMOS EM BREVE. ATE MAIS!\n");
                 exit(0);
               default: /*Entrada inválida.*/
-                printf("\nOPÇÃO INVÁLIDA, TENTE NOVAMENTE.\n");
+                printf("\nOPCAO INVALIDA, TENTE NOVAMENTE.\n");
                 resp = 1;
                 break;
             }
-          } 
+          }
         }
       /*Fim do jogo*/
-      printf("\nPARABÉNS, VOCÊ ZEROU!");
+      printf("\nPARABENS, VOCE ZEROU!");
       /*printf("\nITENS GANHOS:");
       printf("ITENS:");
         for (int c=0; c<=3; c++){
           printf("\n%s", *inventario[c]);
         }*/
-      printf("\nNOS VEREMOS NOVAMENTE, ATÉ MAIS!");
+      printf("\nNOS VEREMOS NOVAMENTE, ATE MAIS!");
       resposta = 0;
       break;
     case 2: /*Se o jogador não quiser jogar.*/
-      printf("NOS VEMOS EM BREVE. ATÉ MAIS!");
+      printf("NOS VEMOS EM BREVE. ATE MAIS!");
       resposta = 0; /*Para o loop*/
       break;
     default: /*Se a entrada for inválida*/
-      printf("OPÇÃO INVÁLIDA, TENTE NOVAMENTE.\n");
+      printf("OPCAO INVALIDA, TENTE NOVAMENTE.\n");
       resposta = 1; /*Retornar ao loop*/
       break;
     }

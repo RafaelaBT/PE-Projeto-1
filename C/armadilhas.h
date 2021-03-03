@@ -5,7 +5,7 @@
 int tentar(){
   int tentar = 1, retorno;
   while(tentar!=0){
-    printf("\nTENTAR NOVAMENTE?\n(1) SIM.\n(2) NÃO.\nRESPOSTA: ");
+    printf("\nTENTAR NOVAMENTE?\n(1) SIM.\n(2) NAO.\nRESPOSTA: ");
     scanf("%d", &tentar);
     switch(tentar){
       case 1:
@@ -17,7 +17,7 @@ int tentar(){
         tentar = 0;
         break;
       default:
-        printf("\nOPÇÃO INVÁLIDA.\n");
+        printf("\nOPCAO INVALIDA.\n");
         tentar = 1;
         break;
     }
@@ -39,7 +39,7 @@ void armadilha_1(){
         teste = tentar();
         break;
       default:
-        printf("\nOPÇÃO INVÁLIDA.\n");
+        printf("\nOPCAO INVALIDA.\n");
         teste = 1;
         break;
     }
@@ -60,7 +60,7 @@ void armadilha_2(){
         teste = tentar();
         break;
       default:
-        printf("\nOPÇÃO INVÁLIDA.\n");
+        printf("\nOPCAO INVALIDA.\n");
         teste = 1;
         break;
     }
@@ -81,7 +81,7 @@ void armadilha_3(){
         teste = tentar();
         break;
       default:
-        printf("\nOPÇÃO INVÁLIDA.\n");
+        printf("\nOPCAO INVALIDA.\n");
         teste = 1;
         break;
     }
@@ -102,7 +102,7 @@ void armadilha_4(){
         teste = tentar();
         break;
       default:
-        printf("\nOPÇÃO INVÁLIDA.\n");
+        printf("\nOPCAO INVALIDA.\n");
         teste = 1;
         break;
     }
@@ -123,7 +123,7 @@ void armadilha_5(){
         teste = tentar();
         break;
       default:
-        printf("\nOPÇÃO INVÁLIDA.\n");
+        printf("\nOPCAO INVALIDA.\n");
         teste = 1;
         break;
     }
@@ -144,7 +144,7 @@ void armadilha_6(){
         teste = tentar();
         break;
       default:
-        printf("\nOPÇÃO INVÁLIDA.\n");
+        printf("\nOPCAO INVALIDA.\n");
         teste = 1;
         break;
     }
