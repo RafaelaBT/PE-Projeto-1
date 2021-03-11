@@ -13,10 +13,7 @@ void andar_texto(int n){
       printf("\n[ANDAR 3]\n(1) PORTA DIREITA.\n(2) PORTA ESQUERDA.\n(3) CONTINUAR.\nRESPOSTA: ");
       break;
     case 4: /*Texto do andar 4*/
-      printf("\n[ANDAR 4]\n(1) PORTA DIREITA.\n(2) PORTA ESQUERDA.\n(3) CONTINUAR.\nRESPOSTA: ");
-      break;
-    case 5: /*Texto do andar 5*/
-      printf("\n[ANDAR 5]\n(1) PORTA DIREITA.\n(2) PORTA ESQUERDA.\n(3) CONTINUAR.\nRESPOSTA: ");
+      printf("\n[ANDAR 4]\nEM CONSTRUCAO.");
       break;
   }
 }
