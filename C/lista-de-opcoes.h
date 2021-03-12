@@ -1,18 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+#include <time.h>
 
-//Estrutura da lista de opÃ§Ãµes: facilita o acesso aos textos das opÃ§Ãµes
-//Tomei como base 5 opÃ§Ãµes por decisÃ£o a ser tomada
-//O ponteio indica qual Ã© a posiÃ§Ã£o selecionada (>>)
+//Estrutura da lista de opções: facilita o acesso aos textos das opções
+//Tomei como base 5 opções por decisão a ser tomada
+//O ponteio indica qual é a posição selecionada (>>)
 struct listaDeOpcoes {
     char titulo[280];
     char ponteiro[5][3];
     char opcoes[5][20];
 };
+typedef struct listaDeOpcoes listaDeOpcoes;
 
-//Acessa os atributos da estrutura para imprimir o poneiro junto a opÃ§Ã£o
-void impListOpc(struct listaDeOpcoes* lista) {
+//Acessa os atributos da estrutura para imprimir o poneiro junto a opção
+void impListOpc(listaDeOpcoes* lista) {
 
     printf("%s\n", lista->titulo);
     for (int i = 0; i < 5; i++) {
@@ -24,12 +27,12 @@ void impListOpc(struct listaDeOpcoes* lista) {
     }
 }
 
-//Possibilida o movimento do ponteiro, trocando o valor (>>) com o possÃ­vel valor nulo (  ) de seus vizinhos
-void mudarOpc(struct listaDeOpcoes* lista) {
+//Possibilida o movimento do ponteiro, trocando o valor (>>) com o possível valor nulo (  ) de seus vizinhos
+void mudarOpc(listaDeOpcoes* lista) {
 
-    //"aux" indica a posiÃ§Ã£o em que o ponteiro estÃ¡
+    //"aux" indica a posição em que o ponteiro está
     int aux = 0;
-    //Percorre as opÃ§Ãµes buscando onde estÃ¡ o ponteiro
+    //Percorre as opções buscando onde está o ponteiro
     for (int i = 0; i < 5; i++) {
         if (strcmp(lista->ponteiro[i], ">>") == 0) {
             aux = i;
@@ -67,12 +70,13 @@ void mudarOpc(struct listaDeOpcoes* lista) {
                 }
             }
         }
-        //Imprime a lista atualizada a cada modificaÃ§Ã£o
+        //Imprime a lista atualizada a cada modificação
         impListOpc(lista);
     }
 }
 
-int escolherOpc(struct listaDeOpcoes* lista) {
+//Possibilita estabelecer um retorno/ação com base na opção escolhida com o ponteiro (>>)
+int escolherOpc(listaDeOpcoes* lista) {
     int escolha = 0;
     mudarOpc(lista);
     for (int i = 0; i < 5; i++) {
@@ -83,31 +87,3 @@ int escolherOpc(struct listaDeOpcoes* lista) {
     }
     return escolha;
 }
-
-    int main() {
-
-        struct listaDeOpcoes lista;
-        //para alocar a palavra/frase em uma string, utiliza-se a funÃ§Ã£o 'strcpy' da biblioteca <string.h>
-        strcpy(lista.titulo, "Desconhecido proximo! O que deseja fazer?");
-
-        strcpy(lista.opcoes[0], "Correr");
-        strcpy(lista.opcoes[1], "Esconder");
-        strcpy(lista.opcoes[2], "Lutar");
-        strcpy(lista.opcoes[3], "Aliar");
-        //Utilizando a plavara "NULL" para indicar a ausÃªncia da opÃ§Ã£o
-        strcpy(lista.opcoes[4], "NULL");
-
-        //Utilizando ">>" para indicar o ponteiro
-        strcpy(lista.ponteiro[0], ">>");
-        //Utilizando "  " para indicar a ausÃªncia do ponteiro
-        strcpy(lista.ponteiro[1], "  ");
-        strcpy(lista.ponteiro[2], "  ");
-        strcpy(lista.ponteiro[3], "  ");
-        strcpy(lista.ponteiro[4], "  ");
-
-        impListOpc(&lista);
-        int escolha = escolherOpc(&lista);
-        printf("A escolha foi: %s\n", lista.opcoes[escolha]);
-        return 0;
-
-    }
