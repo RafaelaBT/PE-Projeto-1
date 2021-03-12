@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "textos.h"
-#include "andares.h"
 #include "jogo.h"
 #include "helpers.h"
 

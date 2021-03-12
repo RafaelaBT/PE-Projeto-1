@@ -28,9 +28,15 @@ void loopDeCenas(int numDaCena) {
   } else {
     Cena cenaAtiva = CENAS[numDaCena];
     exibirCena(cenaAtiva);
-
     if(cenaAtiva.fimDeJogo) {
       return;
+    } else if (cenaAtiva.temPuzzle) {
+      int sucesso = executarPuzzle(cenaAtiva.puzzle);
+      if (sucesso) {
+        return loopDeCenas(cenaAtiva.cenaDeSucesso);
+      } else {
+        return loopDeCenas(cenaAtiva.cenaDeFalha);
+      }
     } else {
       int escolha = proximaCena(cenaAtiva);
       // O retorno é nessa função para utilizar recursão de cauda.
