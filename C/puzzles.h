@@ -1,142 +1,27 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
+const int PUZZLE_DESCRICAO_MAX_SIZE = 1024;
+const int PUZZLE_RESPOSTA_MAX_SIZE = 1024;
 
-int loop = 1;
-char resposta[1];
+typedef struct {
+  char descricao[PUZZLE_DESCRICAO_MAX_SIZE];
+  char resposta[PUZZLE_RESPOSTA_MAX_SIZE];
+} Puzzle;
 
-int tentar(){ /*Pergunta se o usuário quer tentar novamente.*/
-  int retorno;
-  do{
-    printf("\nTENTAR NOVAMENTE?\n(1) SIM.\n(2) NAO.\nRESPOSTA: ");
-    scanf("%s", &resposta[0]);
-    system("clear||cls");
-    if (strcmp(resposta, "1") == 0){ /*Se o usuário ganhar.*/
-      retorno = 1;
-      loop = 0;
-    }
-    else if (strcmp(resposta, "2") == 0){ /*Se o usuário perder.*/
-      retorno = 0;
-      loop = 0;
-    }
-    else{
-      printf("\nOPCAO INVALIDA.\n");
-      loop = 1;
-    }
-  }
-  while(loop!=0);
-  return retorno;
+int respostaCorreta(char * resposta, Puzzle puzzle);
+int executarPuzzle(Puzzle puzzle);
+
+int respostaCorreta(char * resposta, Puzzle puzzle) {
+  return strcmp(resposta, puzzle.resposta);
 }
 
-void puzzle_1(){
-  do{
-    printf("\n[ARMADILHA 1] APENAS TESTE, DIGITE CORRETAMENTE:\n(1) GANHAR.\n(2) PERDER.\nRESPOSTA: ");
-    scanf("%s", &resposta[0]);
-    system("clear||cls");
-    if (strcmp(resposta, "1") == 0){ /*Se o usuário ganhar.*/
-      loop = 0;
-    }
-    else if (strcmp(resposta, "2") == 0){ /*Se o usuário perder.*/
-      loop = tentar();
-    }
-    else{ /*Se a entrada for inválida*/
-      printf("\nOPCAO INVALIDA.\n");
-      loop = 1;
-    }
+int executarPuzzle(Puzzle puzzle) {
+  printf("%s", puzzle.descricao);
+  char resposta[PUZZLE_RESPOSTA_MAX_SIZE];
+  scanf(" %s", resposta);
+  if (respostaCorreta(resposta, puzzle)) {
+    return 0;
+  } else {
+    return 1;
   }
-   while(loop!=0); /*Repete o loop enquanto a resposta for inválida.*/
-}
-
-void puzzle_2(){
-  do{
-    printf("\n[ARMADILHA 1] APENAS TESTE, DIGITE CORRETAMENTE:\n(1) GANHAR.\n(2) PERDER.\nRESPOSTA: ");
-    scanf("%s", &resposta[0]);
-    system("clear||cls");
-    if (strcmp(resposta, "1") == 0){ /*Se o usuário ganhar.*/
-      loop = 0;
-    }
-    else if (strcmp(resposta, "2") == 0){ /*Se o usuário perder.*/
-      loop = tentar();
-    }
-    else{ /*Se a entrada for inválida*/
-      printf("\nOPCAO INVALIDA.\n");
-      loop = 1;
-    }
-  }
-   while(loop!=0); /*Repete o loop enquanto a resposta for inválida.*/
-}
-
-void puzzle_3(){
-  do{
-    printf("\n[ARMADILHA 1] APENAS TESTE, DIGITE CORRETAMENTE:\n(1) GANHAR.\n(2) PERDER.\nRESPOSTA: ");
-    scanf("%s", &resposta[0]);
-    system("clear||cls");
-    if (strcmp(resposta, "1") == 0){ /*Se o usuário ganhar.*/
-      loop = 0;
-    }
-    else if (strcmp(resposta, "2") == 0){ /*Se o usuário perder.*/
-      loop = tentar();
-    }
-    else{ /*Se a entrada for inválida*/
-      printf("\nOPCAO INVALIDA.\n");
-      loop = 1;
-    }
-  }
-   while(loop!=0); /*Repete o loop enquanto a resposta for inválida.*/
-}
-
-void puzzle_4(){
-  do{
-    printf("\n[ARMADILHA 1] APENAS TESTE, DIGITE CORRETAMENTE:\n(1) GANHAR.\n(2) PERDER.\nRESPOSTA: ");
-    scanf("%s", &resposta[0]);
-    system("clear||cls");
-    if (strcmp(resposta, "1") == 0){ /*Se o usuário ganhar.*/
-      loop = 0;
-    }
-    else if (strcmp(resposta, "2") == 0){ /*Se o usuário perder.*/
-      loop = tentar();
-    }
-    else{ /*Se a entrada for inválida*/
-      printf("\nOPCAO INVALIDA.\n");
-      loop = 1;
-    }
-  }
-   while(loop!=0); /*Repete o loop enquanto a resposta for inválida.*/
-}
-
-void puzzle_5(){
-  do{
-    printf("\n[ARMADILHA 1] APENAS TESTE, DIGITE CORRETAMENTE:\n(1) GANHAR.\n(2) PERDER.\nRESPOSTA: ");
-    scanf("%s", &resposta[0]);
-    system("clear||cls");
-    if (strcmp(resposta, "1") == 0){ /*Se o usuário ganhar.*/
-      loop = 0;
-    }
-    else if (strcmp(resposta, "2") == 0){ /*Se o usuário perder.*/
-      loop = tentar();
-    }
-    else{ /*Se a entrada for inválida*/
-      printf("\nOPCAO INVALIDA.\n");
-      loop = 1;
-    }
-  }
-   while(loop!=0); /*Repete o loop enquanto a resposta for inválida.*/
-}
-
-void puzzle_6(){
-  do{
-    printf("\n[ARMADILHA 1] APENAS TESTE, DIGITE CORRETAMENTE:\n(1) GANHAR.\n(2) PERDER.\nRESPOSTA: ");
-    scanf("%s", &resposta[0]);
-    system("clear||cls");
-    if (strcmp(resposta, "1") == 0){ /*Se o usuário ganhar.*/
-      loop = 0;
-    }
-    else if (strcmp(resposta, "2") == 0){ /*Se o usuário perder.*/
-      loop = tentar();
-    }
-    else{ /*Se a entrada for inválida*/
-      printf("\nOPCAO INVALIDA.\n");
-      loop = 1;
-    }
-  }
-   while(loop!=0); /*Repete o loop enquanto a resposta for inválida.*/
 }
