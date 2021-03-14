@@ -67,7 +67,7 @@ void montarBilhete(int *pocao[], char *cores[]){
 
     //proporções das poções
     for(int cont=0; cont<4; cont++){
-        pocao[cont] = (rand()%9)*100;
+        pocao[cont] = (1+rand()%8)*100;
     }
 
     //colocar as cores em ordem aleatória
