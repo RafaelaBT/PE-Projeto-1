@@ -1,72 +1,81 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "textos.h"
-#include "andares.h"
+#include "jogo.h"
+#include "helpers.h"
 
-int main(){
-  int loop=1;
-  char resposta[1];
-  do{
-    printf("\nATENCAO: DIGITE O NUMERO QUE CORRESPONDE A OPCAO.\n(1) JOGAR.\n(2) SAIR.\nRESPOSTA: ");
-    scanf("%s", &resposta[0]);
-    system("clear||cls");
-    if (strcmp(resposta, "1") == 0){ /*Se o usuário quiser jogar.*/
-      for (int c = 1; c <=3; c++){ /*Percorre os 3 andares com puzzles.*/
-        do{
-          andar_texto(c); /*Printa o texto do andar.*/
-          scanf("%s", &resposta[0]);
-          system("clear||cls");
-          if (strcmp(resposta, "1") == 0){ /*Opção 1*/
-            andar(c, 1); /*Chama o primeiro puzzle do andar.*/
-            loop = 0;
-          }
-          else if (strcmp(resposta, "2") == 0){ /*Opção 2*/
-            andar(c, 2); /*Chama o segundo puzzle do andar.*/
-            loop = 0;
-          }
-          else if (strcmp(resposta, "3") == 0){ /*Continuar.*/
-            loop = 0;
-          }
-          else{ /*Opção Inválida*/
-            printf("\nOPCAO INVALIDA, TENTE NOVAMENTE.\n");
-            loop = 1;
-          }
-        }
-        while(loop != 0); /*Repete o loop enquanto a resposta for inválida.*/
-        do{ /*Pergunta se deseja continuar em cada troca de andar.*/
-          printf("\nDESEJA CONTINUAR?\n(1) SIM.\n(2) SAIR.\nRESPOSTA: ");
-          scanf("%s", &resposta[0]);
-          system("clear||cls");
-          if (strcmp(resposta, "1") == 0){ /*Continuar*/
-            printf("\nSUBINDO DE ANDAR, AGUARDE...\n");
-            loop = 0;
-          }
-          else if (strcmp(resposta, "2") == 0){ /*Sair*/
-            printf("\nNOS VEMOS EM BREVE. ATE MAIS!\n");
-            exit(0);
-          }
-          else{ /*Entrada inválida*/
-            printf("\nOPCAO INVALIDA, TENTE NOVAMENTE.\n");
-            loop = 1;
-          }
-        }
-        while (loop != 0); /*Repete o loop enquanto a resposta for inválida.*/
-      }
-      andar_texto(4);
-      andar(4,0);
-      printf("\nAGRADECIMENTOS!");
-      printf("\nCREDITOS.");
-      printf("\nNOS VEREMOS NOVAMENTE, ATE MAIS!\n");
-    }
-    else if (strcmp(resposta, "2") == 0){ /*Se o jogador não quiser jogar.*/
-      printf("\nNOS VEMOS EM BREVE. ATE MAIS!\n");
-      loop = 0;
-    }
-    else{ /*Se a entrada for inválida*/
-      printf("\nOPCAO INVALIDA, TENTE NOVAMENTE.\n");
-      loop = 1;
-    }
+int escolhaValida(int escolha);
+int menuDeEscolha();
+void agradecimentos();
+void creditos();
+void menuLoop();
+
+int main()
+{
+  creditos();
+  menuLoop();
+  agradecimentos();
+}
+
+void creditos()
+{
+  printf("Esse jogo é parte das avaliações da matéria de PE da UFABC.. feito por....");
+  breakLines(2);
+}
+
+void agradecimentos()
+{
+  printf("Obrigado por jogar Nome do Jogo");
+  breakLines(1);
+}
+
+// Essas duas funções são relacionadas ao menu de escolhas do jogo.
+int menuDeEscolha()
+{
+  breakLines(1);
+  printf("----------------------------------------");
+  breakLines(2);
+  printf("DIGITE J PARA JOGAR ou S PARA SAIR: ");
+  int escolha = readChar();
+  switch (escolha) {
+  case 'S':
+    return 0;
+    break;
+  case 'J':
+    return 1;
+    break;
+  default:
+    return menuDeEscolha();
+    break;
   }
-  while (loop != 0); /*Repete o loop enquanto a resposta for inválida.*/
+}
+
+int escolhaValida(int escolha)
+{
+  return escolha == 1 || escolha == 0;
+}
+
+void menuLoop()
+{
+  int sair = 0;
+  do
+  {
+    int opcaoEscolhida = menuDeEscolha();
+    if (escolhaValida(opcaoEscolhida))
+    {
+      switch (opcaoEscolhida)
+      {
+      case 1:
+        novoJogo();
+        break;
+      case 0:
+        sair = 1;
+        break;
+      default:
+        break;
+      }
+    } else {
+      opcaoEscolhida = 3;
+    }
+  } while (sair != 1);
 }
