@@ -45,7 +45,7 @@ int puzzlePocao(){
 
         //morreu
         else if(tentativa==2){
-            printf("\n\n\n\n\Sua visao fica turva e a respiracao ofegante... \n\n\nSeus ultimos suspiros sao pura agonia antes de perder a consiencia");
+            printf("\n\n\n\nSua visao fica turva e a respiracao ofegante... \n\n\nSeus ultimos suspiros sao pura agonia antes de perder a consiencia");
         }
 
         //tente de novo
