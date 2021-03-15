@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,6 +8,7 @@
 
 #define QUANT_NUM_COR 3
 #define QUANT_NUM_ERR 5
+#define QUANT_DICAS_PUZZLESENHA 5
 #define MAX_PUZZLESENHA 8
 #define VAL_PAD_PUZZLESENHA 100
 
@@ -32,7 +34,7 @@ void gerarNumerosAleatorios(int* numeros, int tam) {
 void embaralharNumeros(int* numeros, int tam) {
     int vetAux[MAX_PUZZLESENHA];
     srand(time(NULL));
-    for (int i = 0; i < ceil((float)tam/2); i++) {
+    for (int i = 0; i < ceil((float)tam / 2); i++) {
         int index = rand() % tam;
         vetAux[i] = numeros[i];
         memcpy(&numeros[i], &numeros[index], sizeof(int));
@@ -51,21 +53,81 @@ void imprimirValoresSenha(int* corretos, int* errados) {
     }
 }
 
-void preencherMatrizRef(int (*ref)[3], int linhas, int colunas) {
+void imprimirDicasSenha(int* valoresOrdenados, int linha) {
+    
+    char textoDica[50];
+    switch (linha) {
+    case 1:
+        strcpy(textoDica, "Um numero correto, mas no lugar errado");
+        break;
+    case 2:
+        strcpy(textoDica, "Um numero correto e no lugar correto");
+        break;
+    case 3:
+        strcpy(textoDica, "Nada esta correto");
+        break;
+    case 4:
+        strcpy(textoDica, "Dois numeros corretos, mas nos lugares errados");
+        break;
+    case 5:
+        strcpy(textoDica, "Um numero correto, mas no lugar errado");
+        break;
+    }  
+    if (linha <= QUANT_DICAS_PUZZLESENHA) {
+        printf("[");
+        for (int i = QUANT_NUM_COR * (linha - 1); i < QUANT_NUM_COR * linha; i++) {
+            if (i != QUANT_NUM_COR * linha - 1) {
+                if (valoresOrdenados[i] < 10) {
+                    printf("0%d - ", valoresOrdenados[i]);
+                }
+                else {
+                    printf("%d - ", valoresOrdenados[i]);
+                }
+            }
+            else {
+                if (valoresOrdenados[i] < 10) {
+                    printf("0%d] <- %s", valoresOrdenados[i], textoDica);
+                }
+                else {
+                    printf("%d] <- %s", valoresOrdenados[i], textoDica);
+                }
+            }
+        }
+        printf("\n");
+        linha += 1;
+        imprimirDicasSenha(valoresOrdenados, linha);
+    }
+    else {
+        return;
+    }
+    
+}
 
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 3; j++) {
-            *ref[i] = VAL_PAD_PUZZLESENHA;
+void receberSenha(int *senha) {
+    scanf("%d %d %d", &senha[0], &senha[1], &senha[2]);
+    return senha;
+}
+
+int verificarSenha(int* senha, int* corretos) {
+    int aux = 0;
+    for (int i = 0; i < QUANT_NUM_COR; i++) {
+        if (senha[i] == corretos[i]) {
+            aux += 1;
         }
     }
-
+    if (aux == QUANT_NUM_COR) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
 }
 
 void puzzleSenha() {
 
     int numeros[8];
     gerarNumerosAleatorios(numeros, 8);
-    
+
     int corretos[3];
     int errados[5];
 
@@ -136,15 +198,15 @@ void puzzleSenha() {
     } while (ref[0][index] == corretos[ordenadorC]);
     ref[5][index] = corretos[ordenadorC];
 
-    //Numeros corretos restantes: {4} 2 nums corretos, poss erradas ---- !!!!!
+    //Numeros corretos restantes: {4} 2 nums corretos, poss erradas
     ordenadorC = 0;
     embaralharNumeros(corretos, 3);
     do {
         index = rand() % 3;
-    }while (ref[0][index] == corretos[ordenadorC]);
+    } while (ref[0][index] == corretos[ordenadorC]);
     ref[4][index] = corretos[ordenadorC];
     ordenadorC++;
-    
+
     index2 = index;
     do {
         index = rand() % 3;
@@ -161,28 +223,35 @@ void puzzleSenha() {
         }
     }
 
-    printf("[%d - %d - %d] <- Um numero correto, mas no lugar errado\n", ref[1][0], ref[1][1], ref[1][2]);
-    printf("[%d - %d - %d] <- Um numero correto e no lugar correto\n", ref[2][0], ref[2][1], ref[2][2]);
-    printf("[%d - %d - %d] <- Nada esta correto\n", ref[3][0], ref[3][1], ref[3][2]);
-    printf("[%d - %d - %d] <- Dois numeros corretos, mas nos lugares errados\n", ref[4][0], ref[4][1], ref[4][2]);
-    printf("[%d - %d - %d] <- Um numero correto, mas no lugar errado\n", ref[5][0], ref[5][1], ref[5][2]);
-
-    printf("\nEntre a senha separada por espacos\n-> ");
-    int d1, d2, d3;
-    scanf("%d %d %d", &d1, &d2, &d3);
-
-    if (d1 == ref[0][0] && d2 == ref[0][1] && d3 == ref[0][2]) {
-        printf("\nSenha correta! :)\n\n");
+    int valoresOrdenados[15];
+    int aux = 0;
+    for (int i = 1; i < 6; i++) {
+        for (int j = 0; j < 3; j++) {
+            valoresOrdenados[aux] = ref[i][j];
+            aux++;
+        }
     }
-    else {
-        printf("\nSenha errada! >:(\n\n");
+    for (int i = 0; i < QUANT_NUM_COR; i++) {
+        corretos[i] = ref[0][i];
     }
 
-    //{0}Numeros corretos (na ordem correta)
-    //{1}Um numero correto, mas no lugar errado
-    //{2}Um numero correto e no lugar correto: numeros
-    //{3}Nada esta correto
-    //{4}Dois numeros corretos, mas nos lugares errados
-    //{5}Um numero correto, mas no lugar errado
+    int chances = 3;
+    do {
+        imprimirDicasSenha(valoresOrdenados, 1);
+
+        printf("\nEntre a senha separada por espacos\n-> ");
+        int senha[QUANT_NUM_COR];
+        receberSenha(senha);
+
+        if (verificarSenha(senha, corretos)){
+            printf("\nSenha correta! :)\n\n");
+            chances = 0;
+        }
+        else {
+            printf("\nSenha errada! >:(\n\n");
+            chances--;
+        }
+    } while (chances > 0);
+    
 
 }

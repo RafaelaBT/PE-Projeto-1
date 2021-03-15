@@ -1,3 +1,4 @@
+#pragma once
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -86,4 +87,22 @@ int escolherOpc(listaDeOpcoes* lista) {
         }
     }
     return escolha;
+}
+
+listaDeOpcoes listaPadrao() {
+    listaDeOpcoes lista;
+    strcpy(lista.titulo, "NULL");
+    for (int i = 0; i < 5; i++) {
+        if (i == 0) {
+            //Utilizando ">>" para indicar o ponteiro
+            strcpy(lista.ponteiro[i], ">>");
+        }
+        else {
+            //Utilizando "  " para indicar a ausência do ponteiro
+            strcpy(lista.ponteiro[i], "  ");
+        }
+        //Utilizando a plavara "NULL" para indicar a ausência da opção
+        strcpy(lista.opcoes[i], "NULL");
+    }
+    return lista;
 }
