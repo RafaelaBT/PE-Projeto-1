@@ -1,8 +1,14 @@
-
 #include <stdio.h>
-// some_header_file.h
+#include <stdlib.h>
+
 #ifndef HELPERS_H
 #define HELPERS_H
+
+int readInt();
+char readChar();
+void breakLines(int numeroDeLinhas);
+void clrscr();
+
 int readInt()
 {
   int value;
@@ -24,4 +30,10 @@ void breakLines(int numeroDeLinhas)
     printf("\n");
   }
 }
+
+void clrscr()
+{
+  if (system("CLS")) system("clear");
+}
+
 #endif

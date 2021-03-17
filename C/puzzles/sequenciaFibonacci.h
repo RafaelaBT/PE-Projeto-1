@@ -25,8 +25,6 @@ Puzzle fibonacciPuzzle(
   bufferLeft -= perElementBufferUsed;
 
   for (int i = inicio; i <= quantidade; i++) {
-    printf("\nInteração: %i\n", i);
-    printf("Uso de memória válido? %i\n", (bufferLeft > 0));
     if (bufferLeft >= 0) {
       if (i == quantidade) {
         perElementBufferUsed = snprintf(&descricao[bufferUsed], bufferSize, "%i", fibonnaci(i));
