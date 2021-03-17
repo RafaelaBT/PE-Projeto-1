@@ -39,7 +39,7 @@ Puzzle fibonacciPuzzle(
     perElementBufferUsed = snprintf(
       &descricao[bufferUsed],
       bufferSize,
-      "\n Digite qual é o %i° número da sequência: ",
+      "\nDigite qual é o %i° número da sequência: ",
       desejado
     );
   }

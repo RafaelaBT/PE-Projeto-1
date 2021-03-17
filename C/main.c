@@ -29,15 +29,13 @@ void agradecimentos()
   breakLines(1);
 }
 
-// Essas duas funções são relacionadas ao menu de escolhas do jogo.
 int menuDeEscolha()
 {
-  breakLines(1);
-  printf("----------------------------------------");
-  breakLines(2);
+  clrscr();
   printf("DIGITE J PARA JOGAR ou S PARA SAIR: ");
   int escolha = readChar();
-  switch (escolha) {
+  switch (escolha)
+  {
   case 'S':
     return 0;
     break;
@@ -74,7 +72,9 @@ void menuLoop()
       default:
         break;
       }
-    } else {
+    }
+    else
+    {
       opcaoEscolhida = 3;
     }
   } while (sair != 1);
