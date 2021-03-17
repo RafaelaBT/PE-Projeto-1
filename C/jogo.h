@@ -58,7 +58,7 @@ void loopDeCenas(Cena cenaAtiva)
     return;
     break;
   // case 4:
-  //   sucesso = chamarDiretoUmPuzzleEspecífico();
+  //   sucesso = chamarDiretoUmPuzzleEspecifico();
   //   return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
   //   break;
   default:
@@ -77,7 +77,7 @@ Cena proximaCena(Cena cenaAtiva)
   printf("\n\nSua escolha: ");
   int escolha = readInt();
   if (escolha >= 0 && escolha < cenaAtiva.maxEscolhas){
-    return *cenaAtiva.escolhasPossíveis[escolha];
+    return *cenaAtiva.escolhasPossiveis[escolha];
   } else {
     printf("Escolha inválida. Por favor escolha novamente\n");
     return proximaCena(cenaAtiva);

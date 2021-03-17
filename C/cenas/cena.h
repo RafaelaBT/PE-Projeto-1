@@ -13,7 +13,7 @@ typedef struct Cena
   Puzzle puzzle;
   struct Cena *cenaDeSucesso;
   struct Cena *cenaDeFalha;
-  struct Cena *escolhasPossíveis[MAX_ESCOLHAS_POSSIVEIS];
+  struct Cena *escolhasPossiveis[MAX_ESCOLHAS_POSSIVEIS];
   int maxEscolhas;
 } Cena;
 

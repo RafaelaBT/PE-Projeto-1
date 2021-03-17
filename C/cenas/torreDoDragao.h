@@ -76,7 +76,7 @@ Cena * cena4() {
 
 Cena * cena5() {
     Cena cena;
-    strcpy(cena.descricao, "O livro chacoalha levemente quando tu termina de escreve. A página comeca a ficar mais preenchida de tinta a partir das bordas e no espaço central em branco a tinta se move.\n\n");
+    strcpy(cena.descricao, "O livro chacoalha levemente quando você termina de escrever. A página comeca a ficar mais preenchida de tinta a partir das bordas e no espaço central em branco a tinta se move.\n\n");
     cena.tipo = 2;
     cena.puzzle = fibonacciPuzzle(2, 3, 5, "Após a tinta parar de se mover uma nova sequência aparece com mais uma pergunta: ");
     cena.cenaDeSucesso = cena8();
@@ -117,9 +117,9 @@ Cena * cena9() {
     Cena cena;
     strcpy(cena.descricao, "Ao sair da sala do livro você percorre um corredor de pedra polida em paralelepípedos, com bastante limo nas partes mais baixas. Não há portas e depois andar por um longo tempo você chega em uma bifurcação, na verdade uma trifurcação.\n\nO caminho da esquerda te leva para um novo corredor parecido com o que tu vem percorrendo. O da direita leva para um corredor que tem uma leve descida. No centro tem uma porta de ferro\n\nEscolha um caminho:\n0 - Corredor da esquerda\n1 - Corredor que desce pela direita\n2 - Entrar pela porta no centro");
     cena.tipo = 1;
-    cena.escolhasPossíveis[0] = cena10();
-    cena.escolhasPossíveis[1] = cena11();
-    cena.escolhasPossíveis[2] = cena12();
+    cena.escolhasPossiveis[0] = cena10();
+    cena.escolhasPossiveis[1] = cena11();
+    cena.escolhasPossiveis[2] = cena12();
     cena.maxEscolhas = 3;
     CENAS[9] = cena;
     return &CENAS[9];
@@ -129,8 +129,8 @@ Cena * cena10() {
     Cena cena;
     strcpy(cena.descricao, "Tu anda pelo corredor por longas horas e ele não parece mudar. Tu se cansa e monta um acampamento precário. Ao acordar tu se alimenta com o que resta de suas proviões e continua andando. Por fim tu se cansa e começa a voltar mas o corredor não tem fim. Após andar e dormir mais duas vezes você percebe uma luz no fim do corredor e quando chega percebe que voltou a trifurcação. Você sabe que o dragão deve estar usando magia para te fazer se cansar.\n\nEscolha um caminho:\n0 - Corredor que desce pela direita\n1 - Entrar pela porta no centro");
     cena.tipo = 1;
-    cena.escolhasPossíveis[0] = &CENAS[11];
-    cena.escolhasPossíveis[1] = &CENAS[12];
+    cena.escolhasPossiveis[0] = &CENAS[11];
+    cena.escolhasPossiveis[1] = &CENAS[12];
     cena.maxEscolhas = 2;
     CENAS[10] = cena;
     return &CENAS[10];
