@@ -10,7 +10,8 @@ int puzzlePocao(){
     char *ordem[]={"primeira", "segunda", "terceira", "quarta"};
 
     //historia introdutoria
-    printf("Ao entrar na sala, a porta imediatamente se fecha nas suas costas e voce percebe\nque o ar esta carregado com um gas venenoso.\n\nNa sua esquerda se encontra uma mesa com algumas pocoes e um bilhete, voce se aproxima.\n\n");
+    printf("Entrando na sala pequena voce imediatamente sente um cheiro quimico e nota que o ar esta repleto de um gas provavelmente venenoso, considerando como sua garganta esta inchando.\n\n");
+    printf("No canto esquerdo da sala se encontra uma pequena mesa com aparatos de alquimia, varias pocoes de multiplas cores e o que parece ser um bilhete. Rapidamente voce se aproxima:\n\n");
     system("pause");
     system("cls");
 
@@ -39,20 +40,23 @@ int puzzlePocao(){
 
         //acertou o puzzle
         if(puzzle_certo==4){
-            printf("\nAntidoto criado com sucesso!\n\nVoce bebe a pocao e imediatamente se sente ");
+            printf("\nAntidoto criado com sucesso!\n\nVoce bebe a pocao e imediatamente se sente melhor, ao mesmo tempo a proxima porta se abre e voce escuta:\n\n");
+            printf(" - Voce eh um heroi muito persistente... A maioria dos desafiantes anteriores ja teriam morrido. Mas veremos por quanto tempo a sua sorte continua.\n\n");
+            system("pause");
+            system("cls");
             return 1;
         }
 
         //morreu
         else if(tentativa==2){
-            printf("\n\n\n\nSua visao fica turva e a respiracao ofegante... \n\n\nSeus ultimos suspiros sao pura agonia antes de perder a consiencia");
+            printf("\n\n\n\nVoce toma a pocao mas ela nao faz nenhum efeito.\n\nSua visao fica turva e sua respiracao ofegante, seus ultimos suspiros sao pura agonia antes de perder a consciencia.\n");
         }
 
         //tente de novo
         else{
             system("pause");
             system("cls");
-            printf("\nAcho que o gas esta afetando seu raciocinio... tente novamente\n");
+            printf("\nAcho que o gas esta afetando seu raciocinio... tente rapidamente fazer o antidoto de novo\n");
             printf("\nPor sorte parece ter outro bilhete\n\n\n");
         }
     }
