@@ -14,8 +14,6 @@ typedef struct {
 int respostaCorreta(char * resposta, Puzzle puzzle);
 int executarPuzzle(Puzzle puzzle);
 
-#endif
-
 int respostaCorreta(char * resposta, Puzzle puzzle) {
   return strcmp(resposta, puzzle.resposta);
 }
@@ -30,3 +28,5 @@ int executarPuzzle(Puzzle puzzle) {
     return 1;
   }
 }
+
+#endif

@@ -1,12 +1,14 @@
+#ifndef SEQUENCIA_FIBONACCI_H
+#define SEQUENCIA_FIBONACCI_H
+
 #include <stdio.h>
 #include <string.h>
-#include "../puzzles.h"
+#include "puzzle.h"
 
 int DESCRICAO_MAX_SIZE = PUZZLE_DESCRICAO_MAX_SIZE;
 int RESPOSTA_MAX_SIZE = PUZZLE_RESPOSTA_MAX_SIZE;
 
 int fibonnaci(int n);
-char * descricaoInicio();
 Puzzle fibonacciPuzzle(int inicio, int quantidade, int desejado, char * descricaoInicial);
 
 Puzzle fibonacciPuzzle(
@@ -16,7 +18,7 @@ Puzzle fibonacciPuzzle(
   char * descricaoInicial
 ) {
   char descricao[DESCRICAO_MAX_SIZE];
-  const int bufferSize = sizeof(descricao)/sizeof(descricao[0]) - 1;
+  const int bufferSize = DESCRICAO_MAX_SIZE;
   int perElementBufferUsed, bufferUsed = 0;
   int bufferLeft = bufferSize - bufferUsed;
 
@@ -24,9 +26,9 @@ Puzzle fibonacciPuzzle(
   bufferUsed += perElementBufferUsed;
   bufferLeft -= perElementBufferUsed;
 
-  for (int i = inicio; i <= quantidade; i++) {
-    if (bufferLeft >= 0) {
-      if (i == quantidade) {
+  for (int i = inicio; i < inicio + quantidade; i++) {
+    if (bufferLeft > 0) {
+      if (i == (inicio + quantidade -1)) {
         perElementBufferUsed = snprintf(&descricao[bufferUsed], bufferSize, "%i", fibonnaci(i));
       } else {
         perElementBufferUsed = snprintf(&descricao[bufferUsed], bufferSize, "%i, ", fibonnaci(i));
@@ -39,7 +41,7 @@ Puzzle fibonacciPuzzle(
     perElementBufferUsed = snprintf(
       &descricao[bufferUsed],
       bufferSize,
-      "\nDigite qual é o %i° número da sequência: ",
+      "\n\nDigite qual é o %i° número da sequência: ",
       desejado
     );
   }
@@ -63,3 +65,5 @@ int fibonnaci(int n) {
   }
   return b;
 }
+
+#endif

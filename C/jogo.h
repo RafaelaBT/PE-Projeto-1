@@ -1,58 +1,69 @@
+#ifndef JOGO_H
+#define JOGO_H
+
 #include <stdio.h>
-#include "cenas.h"
+#include "cenas/cena.h"
+#include "cenas/torreDoDragao.h"
 #include "helpers.h"
 
-int proximaCena(Cena cena);
+void novoJogo(int jogoEscolhido);
+Cena carregarJogo(int jogo);
+Cena jogoNãoImplementado();
+Cena proximaCena(Cena cena);
 void exibirCena(Cena cena);
-void loopDeCenas(int numDaCena);
-int proximaCenaPuzzle(Cena cenaAtiva, int sucesso);
+void loopDeCenas(Cena cenaAtiva);
+Cena proximaCenaPuzzle(Cena cenaAtiva, int sucesso);
 
-void novoJogo()
+
+void novoJogo(int jogoEscolhido)
 {
-  carregarCenas();
-  loopDeCenas(0);
+  Cena inicio = carregarJogo(jogoEscolhido);
+  loopDeCenas(inicio);
 }
 
-void loopDeCenas(int numDaCena)
-{
-  if (numDaCena < 0)
+Cena carregarJogo(int jogo) {
+  switch (jogo)
   {
-    return;
+  case 1:
+    return jogoTorreDoDragão();
+    break;
+  default:
+    printf("Erro de Jogo: Jogo não implementado");
+    return jogoNãoImplementado();
+    break;
   }
-  else
+}
+
+void loopDeCenas(Cena cenaAtiva)
+{
+  clrscr();
+  exibirCena(cenaAtiva);
+  int escolha;
+  int sucesso;
+  switch (cenaAtiva.tipo)
   {
-    clrscr();
-    Cena cenaAtiva = CENAS[numDaCena];
-    exibirCena(cenaAtiva);
-    int escolha;
-    int sucesso;
-    switch (cenaAtiva.tipo)
-    {
-    case 0:
-      waitForInput();
-      return loopDeCenas(cenaAtiva.cenaDeSucesso);
-      break;
-    case 1:
-      escolha = proximaCena(cenaAtiva);
-      return loopDeCenas(escolha);
-      break;
-    case 2:
-      sucesso = executarPuzzle(cenaAtiva.puzzle);
-      escolha = proximaCenaPuzzle(cenaAtiva, sucesso);
-      return loopDeCenas(escolha);
-      break;
-    case 3:
-      waitForInput();
-      return;
-      break;
-    // case 4:
-    //   sucesso = chamarDiretoUmPuzzleEspecífico();
-    //   escolha = proximaCenaPuzzle(cenaAtiva, sucesso);
-    //   return loopDeCenas(escolha);
-    //   break;
-    default : printf("Erro de Cena: Tipo não implementado");
-      break;
-    }
+  case 0:
+    waitForInput();
+    return loopDeCenas(*cenaAtiva.cenaDeSucesso);
+    break;
+  case 1:
+    return loopDeCenas(proximaCena(cenaAtiva));
+    break;
+  case 2:
+    sucesso = executarPuzzle(cenaAtiva.puzzle);
+    return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
+    break;
+  case 3:
+    waitForInput();
+    return;
+    break;
+  // case 4:
+  //   sucesso = chamarDiretoUmPuzzleEspecífico();
+  //   return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
+  //   break;
+  default:
+    printf("Erro de Cena: Tipo não implementado");
+    break;
   }
 }
 
@@ -61,20 +72,35 @@ void exibirCena(Cena cena)
   printf("%s", cena.descricao);
 }
 
-int proximaCena(Cena cena)
+Cena proximaCena(Cena cenaAtiva)
 {
-  printf("Sua escolha: ");
-  return readInt();
+  printf("\n\nSua escolha: ");
+  int escolha = readInt();
+  if (escolha >= 0 && escolha < cenaAtiva.maxEscolhas){
+    return *cenaAtiva.escolhasPossíveis[escolha];
+  } else {
+    printf("Escolha inválida. Por favor escolha novamente\n");
+    return proximaCena(cenaAtiva);
+  }
 }
 
-int proximaCenaPuzzle(Cena cenaAtiva, int sucesso)
+Cena proximaCenaPuzzle(Cena cenaAtiva, int sucesso)
 {
   if (sucesso)
   {
-    return cenaAtiva.cenaDeSucesso;
+    return *cenaAtiva.cenaDeSucesso;
   }
   else
   {
-    return cenaAtiva.cenaDeFalha;
+    return *cenaAtiva.cenaDeFalha;
   }
 }
+
+Cena jogoNãoImplementado() {
+  Cena cena;
+  cena.tipo = 3;
+  strcpy(cena.descricao, "Jogo não implementado, Escolha outro jogo");
+  return cena;
+}
+
+#endif

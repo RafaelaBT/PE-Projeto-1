@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 #ifndef HELPERS_H
 #define HELPERS_H
+
+#include <stdio.h>
+#include <stdlib.h>
 
 int readInt();
 char readChar();
@@ -10,6 +10,7 @@ void breakLines(int numeroDeLinhas);
 void clrscr();
 void waitForInput();
 void myflush ( FILE *in );
+
 
 int readInt()
 {
@@ -22,7 +23,7 @@ char readChar()
 {
   char value;
   value = getchar();
-  myflush ( stdin );
+  myflush(stdin);
   return value;
 }
 
@@ -36,26 +37,27 @@ void breakLines(int numeroDeLinhas)
 
 void clrscr()
 {
-  if (system("CLS")) system("clear");
+  if (system("CLS"))
+    system("clear");
 }
 
 void waitForInput()
 {
-  printf("Pressione 'Enter' para continuar. . .\n");
-  fflush ( stdout );
+  printf("\n\nPressione 'Enter' para continuar. . .\n");
+  fflush(stdout);
   getchar();
-  myflush ( stdin );
+  myflush(stdin);
 }
 
-void myflush ( FILE *in )
+void myflush(FILE *in)
 {
   int ch;
 
   do
-    ch = fgetc ( in );
-  while ( ch != EOF && ch != '\n' );
+    ch = fgetc(in);
+  while (ch != EOF && ch != '\n');
 
-  clearerr ( in );
+  clearerr(in);
 }
 
 #endif
