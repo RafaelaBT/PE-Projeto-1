@@ -8,12 +8,11 @@
 //Estrutura da lista de opções: facilita o acesso aos textos das opções
 //Tomei como base 5 opções por decisão a ser tomada
 //O ponteio indica qual é a posição selecionada (>>)
-struct listaDeOpcoes {
+typedef struct {
     char titulo[280];
     char ponteiro[5][3];
     char opcoes[5][20];
-};
-typedef struct listaDeOpcoes listaDeOpcoes;
+}listaDeOpcoes;
 
 //Acessa os atributos da estrutura para imprimir o poneiro junto a opção
 void impListOpc(listaDeOpcoes* lista) {

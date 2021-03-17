@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,6 +10,7 @@
 #define QUANT_DICAS_PUZZLESENHA 5
 #define MAX_PUZZLESENHA 8
 #define VAL_PAD_PUZZLESENHA 100
+#define ID_PUZZLESENHA 33
 
 void gerarNumerosAleatorios(int* numeros, int tam) {
     srand(time(NULL));
@@ -123,7 +123,7 @@ int verificarSenha(int* senha, int* corretos) {
     }
 }
 
-void puzzleSenha() {
+int puzzleSenha() {
 
     int numeros[8];
     gerarNumerosAleatorios(numeros, 8);
@@ -155,12 +155,12 @@ void puzzleSenha() {
     embaralharNumeros(errados, 5);
 
     int erradosDuplicados[10];
-    memcpy(&erradosDuplicados[0], &errados[0], 5 * sizeof(int));
+    memcpy(&erradosDuplicados[0], &errados[0], QUANT_NUM_ERR * sizeof(int));
     //Impede que em uma mesma dica tenham dois números errados iguais
     do {
         embaralharNumeros(errados, 5);
     } while (erradosDuplicados[4] == errados[0]);
-    memcpy(&erradosDuplicados[5], &errados[0], 5 * sizeof(int));
+    memcpy(&erradosDuplicados[5], &errados[0], QUANT_NUM_ERR * sizeof(int));
 
     //Índices que vão auxiliar no acesso dos vetores de nums corretos e errados
     int ordenadorC = 0;
@@ -214,7 +214,7 @@ void puzzleSenha() {
     ref[4][index] = corretos[ordenadorC];
 
     //Numeros errados: {1}{2}{3}{4}{5} ocupam todas as posições restantes
-    for (int i = 0; i < 6; i++) {
+    for (int i = 1; i < 6; i++) {
         for (int j = 0; j < 3; j++) {
             if (ref[i][j] == VAL_PAD_PUZZLESENHA) {
                 ref[i][j] = erradosDuplicados[ordenadorE];
@@ -236,6 +236,7 @@ void puzzleSenha() {
     }
 
     int chances = 3;
+    int senhaCorreta = 0;
     do {
         imprimirDicasSenha(valoresOrdenados, 1);
 
@@ -246,12 +247,24 @@ void puzzleSenha() {
         if (verificarSenha(senha, corretos)){
             printf("\nSenha correta! :)\n\n");
             chances = 0;
+            senhaCorreta = 1;
+            system("pause");
+            system("cls");
         }
         else {
             printf("\nSenha errada! >:(\n\n");
             chances--;
+            if (chances == 2) {
+                printf("Parece que ainda ha uma tentativa...\n\n");
+            }
+            else if (chances == 1) {
+                printf("Ja nao sei quantas tentativas restam...\n\n");
+            }
+            system("pause");
+            system("cls");
         }
     } while (chances > 0);
     
+    return senhaCorreta;
 
 }
