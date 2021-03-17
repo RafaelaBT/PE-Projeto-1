@@ -1,59 +1,106 @@
+#ifndef JOGO_H
+#define JOGO_H
 
 #include <stdio.h>
-#include "cenas.h"
+#include "cenas/cena.h"
+#include "cenas/torreDoDragao.h"
 #include "helpers.h"
 
-int proximaCena(Cena cena);
+void novoJogo(int jogoEscolhido);
+Cena carregarJogo(int jogo);
+Cena jogoNãoImplementado();
+Cena proximaCena(Cena cena);
 void exibirCena(Cena cena);
-void loopDeCenas(int numDaCena);
+void loopDeCenas(Cena cenaAtiva);
+Cena proximaCenaPuzzle(Cena cenaAtiva, int sucesso);
 
-void novoJogo() {
-  printf("Novo Jogo\n");
-  carregarCenas();
 
-  loopDeCenas(0);
-  /* defini que a cena 0 é a inicial por simplicidade
-  Se for o caso podemos transformar em uma Constante e dependendo do jogo começa em um indice diferente.
-  */
+void novoJogo(int jogoEscolhido)
+{
+  Cena inicio = carregarJogo(jogoEscolhido);
+  loopDeCenas(inicio);
 }
 
-/* Esse loopDeCenas atua como um função recursiva que explora o uso da variável global com todas as cenas disponíveis
-e recursão de cauda ao definir qual é a próxima cena.
-As principais mecânicas de jogo vão ser chamadas aqui através de outras funções que podem ser especializadas.
-*/
-void loopDeCenas(int numDaCena) {
-  //Arrays não podem ter indices negativos isso previne qualquer input errado de executar essa função
-  if(numDaCena < 0){
-    return;
-  } else {
-    Cena cenaAtiva = CENAS[numDaCena];
-    exibirCena(cenaAtiva);
-    if(cenaAtiva.fimDeJogo) {
-      return;
-    } else if (cenaAtiva.temPuzzle) {
-      int sucesso = executarPuzzle(cenaAtiva.puzzle);
-      if (sucesso) {
-        return loopDeCenas(cenaAtiva.cenaDeSucesso);
-      } else {
-        return loopDeCenas(cenaAtiva.cenaDeFalha);
-      }
-    } else {
-      int escolha = proximaCena(cenaAtiva);
-      // O retorno é nessa função para utilizar recursão de cauda.
-      return loopDeCenas(escolha);
-    }
+Cena carregarJogo(int jogo) {
+  switch (jogo)
+  {
+  case 1:
+    return jogoTorreDoDragão();
+    break;
+  default:
+    printf("Erro de Jogo: Jogo não implementado");
+    return jogoNãoImplementado();
+    break;
   }
 }
 
-/* Podemos colocar aqui a forma de exibir a cena.
-Podemos evoluir ela para ter outras propriedades a serem exploradas nessa parte do programa */
-void exibirCena(Cena cena) {
-  printf("\n\n");
+void loopDeCenas(Cena cenaAtiva)
+{
+  clrscr();
+  exibirCena(cenaAtiva);
+  int escolha;
+  int sucesso;
+  switch (cenaAtiva.tipo)
+  {
+  case 0:
+    waitForInput();
+    return loopDeCenas(*cenaAtiva.cenaDeSucesso);
+    break;
+  case 1:
+    return loopDeCenas(proximaCena(cenaAtiva));
+    break;
+  case 2:
+    sucesso = executarPuzzle(cenaAtiva.puzzle);
+    return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
+    break;
+  case 3:
+    waitForInput();
+    return;
+    break;
+  // case 4:
+  //   sucesso = chamarDiretoUmPuzzleEspecífico();
+  //   return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
+  //   break;
+  default:
+    printf("Erro de Cena: Tipo não implementado");
+    break;
+  }
+}
+
+void exibirCena(Cena cena)
+{
   printf("%s", cena.descricao);
 }
 
-// Aqui podemos evoluir a cena para ter a lista de próximas cenas disponíveis e nessa função validar isso. Podemos trazder mais tipos de iteração também (como por exemplo se a cena permitir fazer um combate antes de trocar de cena).
-int proximaCena(Cena cena) {
-  printf("Sua escolha: ");
-  return readInt();
+Cena proximaCena(Cena cenaAtiva)
+{
+  printf("\n\nSua escolha: ");
+  int escolha = readInt();
+  if (escolha >= 0 && escolha < cenaAtiva.maxEscolhas){
+    return *cenaAtiva.escolhasPossíveis[escolha];
+  } else {
+    printf("Escolha inválida. Por favor escolha novamente\n");
+    return proximaCena(cenaAtiva);
+  }
 }
+
+Cena proximaCenaPuzzle(Cena cenaAtiva, int sucesso)
+{
+  if (sucesso)
+  {
+    return *cenaAtiva.cenaDeSucesso;
+  }
+  else
+  {
+    return *cenaAtiva.cenaDeFalha;
+  }
+}
+
+Cena jogoNãoImplementado() {
+  Cena cena;
+  cena.tipo = 3;
+  strcpy(cena.descricao, "Jogo não implementado, Escolha outro jogo");
+  return cena;
+}
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef PUZZLES_H
+#define PUZZLES_H
+
 #include <stdio.h>
 #include <string.h>
 const int PUZZLE_DESCRICAO_MAX_SIZE = 1024;
@@ -25,3 +28,5 @@ int executarPuzzle(Puzzle puzzle) {
     return 1;
   }
 }
+
+#endif

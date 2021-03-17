@@ -9,10 +9,11 @@ int menuDeEscolha();
 void agradecimentos();
 void creditos();
 void menuLoop();
-
 int main()
 {
+  clrscr();
   creditos();
+  waitForInput();
   menuLoop();
   agradecimentos();
 }
@@ -20,28 +21,27 @@ int main()
 void creditos()
 {
   printf("Esse jogo é parte das avaliações da matéria de PE da UFABC.. feito por....");
-  breakLines(2);
 }
 
 void agradecimentos()
 {
-  printf("Obrigado por jogar Nome do Jogo");
-  breakLines(1);
+  printf("Obrigado por jogar Torre do Dragão");
 }
 
-// Essas duas funções são relacionadas ao menu de escolhas do jogo.
 int menuDeEscolha()
 {
-  breakLines(1);
-  printf("----------------------------------------");
-  breakLines(2);
-  printf("DIGITE J PARA JOGAR ou S PARA SAIR: ");
+  clrscr();
+  printf("Digite uma das opções e pressione Enter para confimrar:\n1: Jogo Torre do Dragão\ns: Sair\nSua Escolha: ");
   int escolha = readChar();
-  switch (escolha) {
+  switch (escolha)
+  {
   case 'S':
     return 0;
     break;
-  case 'J':
+  case 's':
+    return 0;
+    break;
+  case '1':
     return 1;
     break;
   default:
@@ -66,7 +66,7 @@ void menuLoop()
       switch (opcaoEscolhida)
       {
       case 1:
-        novoJogo();
+        novoJogo(opcaoEscolhida);
         break;
       case 0:
         sair = 1;
@@ -74,7 +74,9 @@ void menuLoop()
       default:
         break;
       }
-    } else {
+    }
+    else
+    {
       opcaoEscolhida = 3;
     }
   } while (sair != 1);

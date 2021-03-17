@@ -1,8 +1,17 @@
-
-#include <stdio.h>
-// some_header_file.h
 #ifndef HELPERS_H
 #define HELPERS_H
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int readInt();
+char readChar();
+void breakLines(int numeroDeLinhas);
+void clrscr();
+void waitForInput();
+void myflush ( FILE *in );
+
+
 int readInt()
 {
   int value;
@@ -13,7 +22,8 @@ int readInt()
 char readChar()
 {
   char value;
-  scanf("%c", &value);
+  value = getchar();
+  myflush(stdin);
   return value;
 }
 
@@ -24,4 +34,30 @@ void breakLines(int numeroDeLinhas)
     printf("\n");
   }
 }
+
+void clrscr()
+{
+  if (system("CLS"))
+    system("clear");
+}
+
+void waitForInput()
+{
+  printf("\n\nPressione 'Enter' para continuar. . .\n");
+  fflush(stdout);
+  getchar();
+  myflush(stdin);
+}
+
+void myflush(FILE *in)
+{
+  int ch;
+
+  do
+    ch = fgetc(in);
+  while (ch != EOF && ch != '\n');
+
+  clearerr(in);
+}
+
 #endif
