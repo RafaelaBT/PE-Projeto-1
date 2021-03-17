@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include "helpers.h"
 
 int puzzlePocao(){
     int *pocao[4], resposta_quantidade[4], puzzle_certo=0;
