@@ -5,33 +5,45 @@
 #include "helpers.h"
 
 int puzzlePocao(){
-    int *pocao[4], resposta_quantidade[4], puzzle_certo=0;
+    int *pocao[4], resposta_quantidade[4], puzzle_certo;
     char *cores[]={"amarelo", "laranja", "lavanda", "magenta"};
     char resposta_cor[4][8];
     char *ordem[]={"primeira", "segunda", "terceira", "quarta"};
 
-    montarBilhete(pocao, cores);
+    for(int tentativas=0; tentativas<3; tentativas++){
+        puzzle_certo=0;
 
-    printf("Pensando isso, o papel se desintegra nas suas maos.\nEspero que voce se lembre dele.\n\n");
+        montarBilhete(pocao, cores);
 
-    memset(resposta_cor, 0, sizeof(resposta_cor));
+        waitForInput();
+        crlscr();
 
-    for(int criar_pocao=0; criar_pocao<4; criar_pocao++){
-        printf("\nCor da %s pocao: ", ordem[criar_pocao]);
-        scanf("%s", &resposta_cor[criar_pocao]);
-        resposta_cor[criar_pocao][7] = '\0';
+        printf("Pensando isso, o papel se desintegra nas suas maos.\nEspero que voce se lembre dele.\n\n");
 
-        printf("Quantidade da %s pocao: ", ordem[criar_pocao]);
-        scanf("%d", &resposta_quantidade[criar_pocao]);
+        memset(resposta_cor, 0, sizeof(resposta_cor));
 
-        if((strcmp(resposta_cor[criar_pocao], cores[criar_pocao])==0) && (resposta_quantidade[criar_pocao] == pocao[criar_pocao])){
-            puzzle_certo++;
+        for(int criar_pocao=0; criar_pocao<4; criar_pocao++){
+            printf("\nCor da %s pocao: ", ordem[criar_pocao]);
+            scanf("%s", &resposta_cor[criar_pocao]);
+            resposta_cor[criar_pocao][7] = '\0';
+
+            printf("Quantidade da %s pocao: ", ordem[criar_pocao]);
+            scanf("%d", &resposta_quantidade[criar_pocao]);
+
+            if((strcmp(resposta_cor[criar_pocao], cores[criar_pocao])==0) && (resposta_quantidade[criar_pocao] == pocao[criar_pocao])){
+                puzzle_certo++;
+            }
         }
-    }
 
-    //acertou o puzzle
-    if(puzzle_certo==4){
-        return 1;
+        //acertou o puzzle
+        if(puzzle_certo==4){
+            return 1;
+        }
+        else{
+            waitForInput();
+            crlscr();
+            printf("\nAcho que o gas esta afetando seu raciocinio... tente rapidamente fazer o antidoto de novo\n\nPor sorte parece ter outro bilhete\n\n\n");
+        }
     }
     return 0;
 }
