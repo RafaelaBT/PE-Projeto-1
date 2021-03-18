@@ -3,6 +3,7 @@
 
 #include "../puzzles/sequenciaFibonacciPuzzle.h"
 #include "../puzzles/puzzlePocao.h"
+#include "../puzzles/puzzle-senha.h"
 #include "cena.h"
 #include <string.h>
 const int MAX_CENAS = 13;
@@ -151,11 +152,37 @@ Cena * cena11() {
     return &CENAS[11];
 }
 
+Cena * cena12(){
+  Cena cena;
+  strcpy(cena.descricao, "Assim que voce entra na proxima sala consegue perceber que tem alguma coisa errada com o seu chao, como se ele estivesse conectado a algum mecanismo.\n\nA parte principal do mecanismo parece ser uma tabua conectada a parede, com tres bobinas giratorias e numeros de uma senha, assim como um cadeado.\n\nVoce se aproxima do desafio.\n\n");
+  cena.tipo = 4;
+  cena.cenaDeFalha = cena13();
+  cena.cenaDeSucesso = cena14();
+  CENAS[12] = cena;
+  return &CENAS[12];
+}
+
+Cena * cena 13(){
+  Cena cena;
+  strcpy(cena.descricao, "Ao colocar o ultimo numero, voce percebe tarde demais que colocou a senha errada novamente.\n\nO mecanismo na parede da um click e o chao se abre como um alçapao, fazendo com que voce caia ate atingir uma piscina de acido que corroe o seu corpo ate nao sobrar mais nada.\n\n");
+  cena.tipo  = 3;
+  CENAS[13] = cena;
+  return &CENAS[13];
+}
+
+Cena * cena14(){
+  Cena cena;
+  strcpy(cena.descricao, "Muito bem! O chao continua intacto e uma porta parece na parede como se sempre estivesse la.\n\nVoce entra e encontra uma escada espiral com outra porta no final, que lhe leva ao proximo desafio.\n\n");
+  cena.tipo = 0;
+  cena.cenaDeSucesso = cena15();
+  CENAS[14] = cena;
+  return &CENAS[14];
+}
+
 Cena * cena15() {
     Cena cena;
     strcpy(cena.descricao, "Entrando na sala pequena voce imediatamente sente um cheiro quimico e nota que o ar esta repleto de um gas provavelmente venenoso, considerando como sua garganta esta inchando.\n\nNo canto esquerdo da sala se encontra uma pequena mesa com aparatos de alquimia, varias pocoes de multiplas cores e o que parece ser um bilhete. Rapidamente voce se aproxima:\n\n");
-    cena.tipo = 4;
-    cena.puzzle = puzzlePocao();
+    cena.tipo = 5;
     cena.cenaDeSucesso = cena17();
     cena.cenaDeFalha = cena16();
     CENAS[15] = cena;

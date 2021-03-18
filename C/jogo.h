@@ -8,7 +8,7 @@
 
 void novoJogo(int jogoEscolhido);
 Cena carregarJogo(int jogo);
-Cena jogoNãoImplementado();
+Cena jogoNaoImplementado();
 Cena proximaCena(Cena cena);
 void exibirCena(Cena cena);
 void loopDeCenas(Cena cenaAtiva);
@@ -29,7 +29,7 @@ Cena carregarJogo(int jogo) {
     break;
   default:
     printf("Erro de Jogo: Jogo não implementado");
-    return jogoNãoImplementado();
+    return jogoNaoImplementado();
     break;
   }
 }
@@ -57,10 +57,14 @@ void loopDeCenas(Cena cenaAtiva)
     waitForInput();
     return;
     break;
-  // case 4:
-  //   sucesso = chamarDiretoUmPuzzleEspecifico();
-  //   return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
-  //   break;
+  case 4:
+     sucesso = puzzleSenha();
+     return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
+     break;
+  case 5:
+    sucesso = puzzlePocao();
+    return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
+    break;
   default:
     printf("Erro de Cena: Tipo não implementado");
     break;
@@ -96,7 +100,7 @@ Cena proximaCenaPuzzle(Cena cenaAtiva, int sucesso)
   }
 }
 
-Cena jogoNãoImplementado() {
+Cena jogoNaoImplementado() {
   Cena cena;
   cena.tipo = 3;
   strcpy(cena.descricao, "Jogo não implementado, Escolha outro jogo");
