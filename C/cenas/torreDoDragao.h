@@ -28,7 +28,6 @@ Cena * cena15();
 Cena * cena16();
 Cena * cena17();
 Cena * cena18();
-Cena * cena19();
 
 Cena jogoTorreDoDragao() {
     return introducao();
@@ -155,9 +154,9 @@ Cena * cena11() {
 Cena * cena15() {
     Cena cena;
     strcpy(cena.descricao, "Entrando na sala pequena voce imediatamente sente um cheiro quimico e nota que o ar esta repleto de um gas provavelmente venenoso, considerando como sua garganta esta inchando.\n\nNo canto esquerdo da sala se encontra uma pequena mesa com aparatos de alquimia, varias pocoes de multiplas cores e o que parece ser um bilhete. Rapidamente voce se aproxima:\n\n");
-    cena.tipo = 2;
+    cena.tipo = 4;
     cena.puzzle = puzzlePocao();
-    cena.cenaDeSucesso = cena19();
+    cena.cenaDeSucesso = cena17();
     cena.cenaDeFalha = cena16();
     CENAS[15] = cena;
     return &CENAS[15];
@@ -165,44 +164,33 @@ Cena * cena15() {
 
 Cena * cena16() {
     Cena cena;
-    strcpy(cena.descricao, "\nAcho que o gas esta afetando seu raciocinio... tente rapidamente fazer o antidoto de novo\n\nPor sorte parece ter outro bilhete\n\n\n");
-    cena.tipo = 2;
-    cena.puzzle = puzzlePocao();
-    cena.cenaDeSucesso = cena19();
-    cena.cenaDeFalha = cena17();
+    strcpy(cena.descricao, "\n\nVoce toma a pocao mas ela nao faz nenhum efeito.\n\nSua visao fica turva e sua respiracao ofegante, seus ultimos suspiros sao pura agonia antes de perder a consciencia.\n\nFim do jogo.\n");
+    cena.tipo = 3;
     CENAS[16] = cena;
     return &CENAS[16];
 }
 
 Cena * cena17() {
     Cena cena;
-    strcpy(cena.descricao, "\n\nVoce toma a pocao mas ela nao faz nenhum efeito.\n\nSua visao fica turva e sua respiracao ofegante, seus ultimos suspiros sao pura agonia antes de perder a consciencia.\n\nFim do jogo.\n");
-    cena.tipo = 3;
+    strcpy(cena.descricao, "\nAntidoto criado com sucesso!\n\nVoce bebe a pocao e imediatamente se sente melhor, ao mesmo tempo a proxima porta se abre e voce escuta:\n\n - Voce eh um heroi muito persistente... A maioria dos desafiantes anteriores ja teriam morrido. Mas veremos por quanto tempo a sua sorte continua.\n\n");
+    cena.tipo = 0;
+    cena.cenaDeSucesso = cena18();
     CENAS[17] = cena;
     return &CENAS[17];
 }
 
 Cena * cena18() {
-    Cena cena;
-    strcpy(cena.descricao, "\nAntidoto criado com sucesso!\n\nVoce bebe a pocao e imediatamente se sente melhor, ao mesmo tempo a proxima porta se abre e voce escuta:\n\n - Voce eh um heroi muito persistente... A maioria dos desafiantes anteriores ja teriam morrido. Mas veremos por quanto tempo a sua sorte continua.\n\n");
-    cena.tipo = 0;
-    cena.cenaDeSucesso = cena19();
-    CENAS[18] = cena;
-    return &CENAS[18];
-}
-
-Cena * cena19() {
     int tipo = 3;
-    if (CENAS[12].tipo != tipo) {
-        printf("Criando cena 12\n");
+    if (CENAS[18].tipo != tipo) {
+        printf("Criando cena 18\n");
         Cena cena;
         strcpy(cena.descricao, "Voce abre a porta e ve uma placa que diz: Fim da demo. Voce sobreviveu ate aqui. Jogue novamente");
         cena.tipo = tipo;
-        CENAS[12] = cena;
-        return &CENAS[12];
+        CENAS[18] = cena;
+        return &CENAS[18];
     } else {
-        printf("Reutilizando cena 12\n");
-        return &CENAS[12];
+        printf("Reutilizando cena 18\n");
+        return &CENAS[18];
     }
 }
 
