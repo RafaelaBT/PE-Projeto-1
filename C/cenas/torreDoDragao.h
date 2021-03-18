@@ -162,9 +162,9 @@ Cena * cena12(){
   return &CENAS[12];
 }
 
-Cena * cena 13(){
+Cena * cena13(){
   Cena cena;
-  strcpy(cena.descricao, "Ao colocar o ultimo numero, voce percebe tarde demais que colocou a senha errada novamente.\n\nO mecanismo na parede da um click e o chao se abre como um alçapao, fazendo com que voce caia ate atingir uma piscina de acido que corroe o seu corpo ate nao sobrar mais nada.\n\n");
+  strcpy(cena.descricao, "Ao colocar o ultimo numero, voce percebe tarde demais que colocou a senha errada novamente.\n\nO mecanismo na parede da um click e o chao se abre como um alcapao, fazendo com que voce caia ate atingir uma piscina de acido que corroe o seu corpo ate nao sobrar mais nada.\n\n");
   cena.tipo  = 3;
   CENAS[13] = cena;
   return &CENAS[13];

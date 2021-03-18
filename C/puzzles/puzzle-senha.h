@@ -115,7 +115,7 @@ void imprimirDicasSenha(int* valoresOrdenados, int linha) {
 
 void receberSenha(int *senha) {
     scanf("%d %d %d", &senha[0], &senha[1], &senha[2]);
-    return senha;
+    return;
 }
 
 int verificarSenha(int* senha, int* corretos) {
