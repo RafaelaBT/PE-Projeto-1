@@ -25,10 +25,10 @@ Cena carregarJogo(int jogo) {
   switch (jogo)
   {
   case 1:
-    return jogoTorreDoDragão();
+    return jogoTorreDoDragao();
     break;
   default:
-    printf("Erro de Jogo: Jogo não implementado");
+    printf("Erro de Jogo: Jogo nao implementado");
     return jogoNaoImplementado();
     break;
   }
@@ -66,7 +66,7 @@ void loopDeCenas(Cena cenaAtiva)
     return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
     break;
   default:
-    printf("Erro de Cena: Tipo não implementado");
+    printf("Erro de Cena: Tipo nao implementado");
     break;
   }
 }
@@ -83,7 +83,7 @@ Cena proximaCena(Cena cenaAtiva)
   if (escolha >= 0 && escolha < cenaAtiva.maxEscolhas){
     return *cenaAtiva.escolhasPossiveis[escolha];
   } else {
-    printf("Escolha inválida. Por favor escolha novamente\n");
+    printf("Escolha invalida. Por favor escolha novamente\n");
     return proximaCena(cenaAtiva);
   }
 }
@@ -103,7 +103,7 @@ Cena proximaCenaPuzzle(Cena cenaAtiva, int sucesso)
 Cena jogoNaoImplementado() {
   Cena cena;
   cena.tipo = 3;
-  strcpy(cena.descricao, "Jogo não implementado, Escolha outro jogo");
+  strcpy(cena.descricao, "Jogo nao implementado, Escolha outro jogo");
   return cena;
 }
 

@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "helpers.h"
+
+void montarBilhete(int *pocao[], char *cores[]);
 
 int puzzlePocao(){
     int *pocao[4], resposta_quantidade[4], puzzle_certo;
@@ -15,8 +16,8 @@ int puzzlePocao(){
 
         montarBilhete(pocao, cores);
 
-        waitForInput();
-        crlscr();
+        system("pause");
+        system("cls");
 
         printf("Pensando isso, o papel se desintegra nas suas maos.\nEspero que voce se lembre dele.\n\n");
 
@@ -40,8 +41,8 @@ int puzzlePocao(){
             return 1;
         }
         else{
-            waitForInput();
-            crlscr();
+            system("pause");
+            system("cls");
             printf("\nAcho que o gas esta afetando seu raciocinio... tente rapidamente fazer o antidoto de novo\n\nPor sorte parece ter outro bilhete\n\n\n");
         }
     }
@@ -95,6 +96,6 @@ void montarBilhete(int *pocao[], char *cores[]){
 
     printf("\n\nEsse papel parece bem fragil, melhor memorizar isso...\n\n");
 
-    waitForInput();
-    crlscr();
+    system("pause");
+    system("cls");
 }
