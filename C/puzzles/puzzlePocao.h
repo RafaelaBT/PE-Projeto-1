@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include "../helpers.h"
 
 void montarBilhete(int *pocao[], char *cores[]);
 
@@ -16,8 +17,8 @@ int puzzlePocao(){
 
         montarBilhete(pocao, cores);
 
-        system("pause");
-        system("cls");
+        waitForInput();
+        clrscr();
 
         printf("Pensando isso, o papel se desintegra nas suas maos.\nEspero que voce se lembre dele.\n\n");
 
@@ -25,13 +26,13 @@ int puzzlePocao(){
 
         for(int criar_pocao=0; criar_pocao<4; criar_pocao++){
             printf("\nCor da %s pocao: ", ordem[criar_pocao]);
-            scanf("%s", &resposta_cor[criar_pocao]);
+            scanf(" %s", &*resposta_cor[criar_pocao]);
             resposta_cor[criar_pocao][7] = '\0';
 
             printf("Quantidade da %s pocao: ", ordem[criar_pocao]);
             scanf("%d", &resposta_quantidade[criar_pocao]);
 
-            if((strcmp(resposta_cor[criar_pocao], cores[criar_pocao])==0) && (resposta_quantidade[criar_pocao] == pocao[criar_pocao])){
+            if((strcmp(resposta_cor[criar_pocao], cores[criar_pocao])==0) && (resposta_quantidade[criar_pocao] == *pocao[criar_pocao])){
                 puzzle_certo++;
             }
         }
@@ -41,8 +42,8 @@ int puzzlePocao(){
             return 1;
         }
         else{
-            system("pause");
-            system("cls");
+            waitForInput();
+            clrscr();
             printf("\nAcho que o gas esta afetando seu raciocinio... tente rapidamente fazer o antidoto de novo\n\nPor sorte parece ter outro bilhete\n\n\n");
         }
     }
@@ -57,16 +58,16 @@ void montarBilhete(int *pocao[], char *cores[]){
 
     //proporções das poções
     for(int cont=0; cont<4; cont++){
-        pocao[cont] = (1+rand()%8)*100;
+        *pocao[cont] = (1+rand()%8)*100;
     }
 
     //colocar as cores em ordem aleatória
-    for(int i=0; i<(strlen(cores)+1); i++){
-        cor_aleatoria = rand()%strlen(cores);
+    for(int i=0; i<(strlen(*cores)+1); i++){
+        cor_aleatoria = rand()%strlen(*cores);
 
         const char* temporario = cores[cor_aleatoria];
         cores[cor_aleatoria] = cores[i];
-        cores[i] = temporario;
+        strcpy(cores[i], temporario);
     }
 
     //montar o bilhete
@@ -80,7 +81,7 @@ void montarBilhete(int *pocao[], char *cores[]){
                 strcpy(bilhete[3], "|    Antidoto Gas   |");
             }
             else{
-                snprintf(bilhete[linha], sizeof(bilhete[linha]), "|  %d - %s %d  |", num_lista, cores[num_lista-1], pocao[num_lista-1]);
+                snprintf(bilhete[linha], sizeof(bilhete[linha]), "|  %d - %s %d  |", num_lista, cores[num_lista-1], *pocao[num_lista-1]);
                 num_lista++;
             }
         }
@@ -96,6 +97,6 @@ void montarBilhete(int *pocao[], char *cores[]){
 
     printf("\n\nEsse papel parece bem fragil, melhor memorizar isso...\n\n");
 
-    system("pause");
-    system("cls");
+    waitForInput();
+    clrscr();
 }
