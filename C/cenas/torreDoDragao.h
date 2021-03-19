@@ -45,6 +45,9 @@ Cena *fibonacci12();
 Cena *fibonacci13();
 Cena *fibonacciImagem();
 Cena *ravenImage();
+Cena *imagemPalavras();
+Cena *imagemPocoes();
+Cena *imagemDesmaio();
 
 Cena jogoTorreDoDragao()
 {
@@ -116,6 +119,16 @@ Cena *cena4()
     char cenaDescricao[] = "Voce se sente atordoado, parece que algo esta testando sua sanidade.\n\nVoce se aproxima do livro.\n\nMas sera que voce esta pronto? Ao tocar a pena, o tempo passara a correr.\n\n(NOTA: As frases adaptadas desse puzzle foram retiradas de 'CEM TROVAS POPULARES (anonimas)' da Colecao 'Trovadores Brasileiros' - Organizacao de Luiz Otavio e J. G. de Araujo Jorge.)";
     strcpy(cena.descricao, cenaDescricao);
     cena.tipo = 0;
+    cena.cenaDeSucesso = imagemPalavras();
+    return adicionarCena(cena);
+}
+
+Cena *imagemPalavras()
+{
+    Cena cena;
+    cena.id = 66;
+    cena.tipo = 7;
+    strcpy(cena.descricao, "./C/images/palavras.txt");
     cena.cenaDeSucesso = cena5();
     return adicionarCena(cena);
 }
@@ -134,7 +147,7 @@ Cena *cena5()
 Cena *cena6()
 {
     Cena cena;
-    cena.id = 8;
+    cena.id = 7;
     strcpy(cena.descricao, "As palavras desaparecem. Voce se sente mais tonto e se apoia na mesa, olhando ao redor. Aquela pilha de livros estava ali antes? Voce nao tem mais certeza... nao, foco! Voce nao pode desistir, nao agora. Voce ainda tem muito o que percorrer\nVoce tenta se recompor.");
     cena.tipo = 6;
     cena.cenaDeSucesso = cena10();
@@ -149,18 +162,17 @@ Cena *cena7()
     strcpy(cena.descricao, "Voce se sente esgotado e sua visao vai se fechando, quase nao consegue segurar mais a pena. Coitado. Por que voce veio? Ou melhor, quando? Voce nao se lembra... mas sabe que precisa tentar mais uma vez, e a sua unica chance de sair daqui.\n\nCom toda a sua força restante, voce se aproxima novamente.");
     cena.tipo = 6;
     cena.cenaDeSucesso = cena10();
-    cena.cenaDeFalha = cena8();
+    cena.cenaDeFalha = imagemDesmaio();
     return adicionarCena(cena);
 }
 
-Cena *cena8()
+Cena *imagemDesmaio()
 {
     Cena cena;
     cena.id = 10;
-    strcpy(cena.descricao, "Voce se sente esgotado e sua visao vai se fechando, quase nao consegue segurar mais a pena. Coitado. Por que voce veio? Ou melhor, quando? Voce nao se lembra... mas sabe que precisa tentar mais uma vez, e a sua unica chance de sair daqui.\n\nCom toda a sua força restante, voce se aproxima novamente.");
-    cena.tipo = 6;
-    cena.cenaDeSucesso = cena10();
-    cena.cenaDeFalha = cena9();
+    cena.tipo = 7;
+    strcpy(cena.descricao, "./C/images/desmaio.txt");
+    cena.cenaDeSucesso = cena9();
     return adicionarCena(cena);
 }
 
@@ -249,6 +261,16 @@ Cena *cena17()
     cena.id = 19;
     strcpy(cena.descricao, "\nAntidoto criado com sucesso!\n\nVoce bebe a pocao e imediatamente se sente melhor, ao mesmo tempo a proxima porta se abre e voce escuta:\n\n - Voce eh um heroi muito persistente... A maioria dos desafiantes anteriores ja teriam morrido. Mas veremos por quanto tempo a sua sorte continua.\n\n");
     cena.tipo = 0;
+    cena.cenaDeSucesso = imagemPocoes();
+    return adicionarCena(cena);
+}
+
+Cena *imagemPocoes()
+{
+    Cena cena;
+    cena.id = 91;
+    cena.tipo = 7;
+    strcpy(cena.descricao, "./C/images/pocoes.txt");
     cena.cenaDeSucesso = cena18();
     return adicionarCena(cena);
 }
@@ -268,7 +290,7 @@ Cena *fibonacci1()
     Cena cena;
     cena.id = 40;
     cena.tipo = 0;
-    strcpy(cena.descricao, "Vagando pelo castelo você entra por um corredor de pedra polida em formato de paralelepípedo. Parece que o negócio desse dragão está dando certo para ter uma ala de tanta qualidade. \n\nConforme os corredores passam eles vão ficando mais largos e você começa a ver mais tapeçaria, decorações suntuosas nas paredes, armaduras completas em pose de continencia, quadros, espadas e toda a sorte de items. \n\nDepois que o dragão estiver morto é capaz de você se tornar o novo senhor deste castelo, e será um senhor rico.");
+    strcpy(cena.descricao, "Vagando pelo castelo você entra por um corredor de pedra polida em formato de paralelepípedo. Parece que o negócio desse dragão está dando certo para ter uma ala de tanta qualidade. \n\nConforme os corredores passam eles vão ficando mais largos e você começa a ver mais tapeçariaa, decorações suntuosas nas paredes, armaduras completas em pose de continência, quadros, espadas e toda a sorte de items. \n\nDepois que o dragão estiver morto é capaz de você se tornar o novo senhor deste castelo, e será um senhor rico.");
     cena.cenaDeSucesso = fibonacci2();
     return adicionarCena(cena);
 }
@@ -278,7 +300,7 @@ Cena *fibonacci2()
     Cena cena;
     cena.id = 41;
     cena.tipo = 0;
-    strcpy(cena.descricao, "Você passa por algumas salas a procura do caminho para o oponente. Até que se depara com pessoas. \nServentes com uma coleira com corrente que pende nas costas, não é longa mas é bem útil para alguém que quiser puxar e controlar o pobre coitado. \n\nEles se assustam com sua presença conforme te notam e começam a sair por portas laterais, entrar em quartos e bater a porta ou limpar o chão mais de perto, longe do alcance dos seus olhos.");
+    strcpy(cena.descricao, "Você passa por algumas salas a procura do caminho para o oponente. Até que se depara com pessoas. \nServentes com uma coleira metalica ao redor do pescoço e dela pende uma corrent que não é longa mas é bem útil para alguém que quiser puxar e controlar o pobre coitado. \n\nEles se assustam com sua presença conforme te notam e começam a sair por portas laterais, entrar em quartos e bater a porta ou limpar o chão mais de perto, longe do alcance dos seus olhos.");
     cena.cenaDeSucesso = fibonacci3();
     return adicionarCena(cena);
 }
@@ -288,7 +310,7 @@ Cena *fibonacci3()
     Cena cena;
     cena.id = 42;
     cena.tipo = 0;
-    strcpy(cena.descricao, "Você se aproxima de um deles, um home velho vestido com pouco mais que trapos, de perto tu nota que a coleira de metal fez machucados ao redor da garganta. Ele deve estar ali a muito tempo. \n\nVocê pergunta se ele está bem e, após uma breve hesitação e um olhar para os lados checando se é com ele mesmo, o velho balança a cabeça frenéticamente em aprovação. \nQuando tu pergunta sobre o caminho ele aponta para uma direção e tu percebe que, o caminho estava no fim do corredor. \n\nEstranho, você se pergunta como você não havia percebido até agora? \n\nEra óbvio que estava ali. \n\nSempre esteve ali.");
+    strcpy(cena.descricao, "Você se aproxima de um deles, um homem velho vestido com pouco mais que trapos. De perto você nota que a coleira de metal fez machucados ao redor da garganta. Ele deve ser escravo faz muito tempo. \n\nVocê pergunta se ele está bem e, após uma breve hesitação e um olhar para os lados checando se é com ele mesmo, o velho balança a cabeça freneticamente em aprovação. \nQuando você pergunta sobre o caminho ele aponta para uma direção e você percebe que, o caminho estava no fim do corredor. \n\nEstranho. Você se pergunta como você não havia percebido até agora? \n\nEra óbvio que estava ali. \n\nSempre esteve ali.");
     cena.cenaDeSucesso = fibonacci4();
     return adicionarCena(cena);
 }
@@ -298,7 +320,7 @@ Cena *fibonacci4()
     Cena cena;
     cena.id = 43;
     cena.tipo = 0;
-    strcpy(cena.descricao, "Tomando folêgo você ruma para a porta e a abre, dentro um corredor mais estreito e sem as suntuosidades de fora. \nDeve ter uns 10 metro até uma porta dupla e você percebe que não tem janelas. \nApenas a luz que entra por onde chegou e da borda que brilha da porta no fim iluminam o local. Olhando de novo tu nota que a parede e o chão perto da porta dupla está mais sujo que o redor, mas não dá para saber de que.\n\nVocê dá alguns passos quando escuta com pesar um 'click'. Teus reflexos não são rapidos o suficiente para voltar a tempo e a última coisa que vê da porta por onde veio é o rosto do velho.\n\nEle não está surpreso ou apavorado, apenas complacente... Você raciocina e sabe que ele armou para você.");
+    strcpy(cena.descricao, "Tomando folêgo você ruma para a porta e a abre. Dentro, um corredor mais estreito e sem as suntuosidades de fora que deve ter uns 10 metros até uma porta dupla. \n\nO local não tem janelas apenas a luz que entra por onde chegou e que brilha da borda da porta iluminam o local. Olhando de novo você nota que a parede e o chão perto da porta dupla estão mais sujos que o redor, mas não dá para saber de quê.\n\nVocê dá alguns passos e escuta com pesar um 'click'. Teus reflexos não são rápidos o suficiente para voltar a tempo e a última coisa que você vê da porta por onde veio é o rosto do velho.\n\nEle não está surpreso ou apavorado, apenas complacente... Você raciocina e sabe que ele armou para você.");
     cena.cenaDeSucesso = fibonacci5();
     return adicionarCena(cena);
 }
@@ -308,7 +330,7 @@ Cena *fibonacci5()
     Cena cena;
     cena.id = 44;
     cena.tipo = 0;
-    strcpy(cena.descricao, "No instante seguinte a porta está fechada e começa a se mover na sua direção. \n\nSeus instintos heróicos sabem que não é o fim, deve ter uma saída, afinal o dragão disse que haveriam desafios e que só passando por eles você poderia o enfrentar. \n\nE mais importante ainda, se não achar uma saída vai ter que se acostumar com a vida em 2D.");
+    strcpy(cena.descricao, "No instante seguinte a porta está fechada e começa a se mover na sua direção. \n\nSeus instintos heróicos sabem que não é o fim e deve ter uma saída, afinal o dragão disse que haveriam desafios e que só passando por eles você poderia o enfrentar. \n\nE mais importante ainda, se não achar uma saída vai ter que se acostumar com a vida em 2D.");
     cena.cenaDeSucesso = fibonacciImagem();
     return adicionarCena(cena);
 }
@@ -328,7 +350,7 @@ Cena *fibonacci6()
     Cena cena;
     cena.id = 45;
     cena.tipo = 0;
-    strcpy(cena.descricao, "Você olha para a porta e se aproxima dela rapidamente. Ela não tem fechadura dobradiça nem nada, se não fosse a borda brilhante poderia confundir com uma parede pintada de porta. \n\nOlhando mais de perto você percebe que ela tem uma espécie de quadro no meio e é adornada com alguns símbolos e runas que você sabe que são mágicas. \nAo tocar no quadro vários símbolos começam a se mover e deles se foram alguns números. \n\nVocê sabe que deve desenhar algum número no quadro");
+    strcpy(cena.descricao, "Você olha para a porta e se aproxima dela rapidamente. Ela não tem fechadura dobradiça nem nada, se não fosse a borda brilhante poderia confundir com uma parede pintada de porta. \n\nOlhando mais de perto você percebe que ela tem uma espécie de quadro no meio e é adornada com alguns símbolos e runas que você sabe que são mágicas. \nAo tocar no quadro vários símbolos começam a se mover e deles se formam alguns números. \n\nVocê presume que deve desenhar algum número no quadro");
     cena.cenaDeSucesso = fibonacci7();
     return adicionarCena(cena);
 }
@@ -362,7 +384,7 @@ Cena *fibonacci9()
     Cena cena;
     cena.id = 48;
     cena.tipo = 2;
-    strcpy(cena.descricao, "Novamente os números tremem e somem e a porta parece ainda mais sólida, mas na verade é que você começa a sentir a parede encostando nas suas costas. \nVocê desesperadamente toca no quadro e ele mostra mais um conjunto de números, talvez pela última vez, queira você ou não. \n\nNão há tempo para esperar você olha para o conjunto e escreve a resposta da sua vida:\n");
+    strcpy(cena.descricao, "Novamente os números tremem e somem e a porta parece ainda mais sólida, mas a verade é que você começa a sentir a parede encostando nas suas costas. \nVocê desesperadamente toca no quadro e ele mostra mais um conjunto de números, talvez pela última vez, queira você ou não. \n\nNão há tempo para esperar você olha para o conjunto e escreve a resposta da sua vida:\n");
     cena.puzzle = fibonacciPuzzle(10, 10, 21);
     cena.cenaDeFalha = fibonacci10();
     cena.cenaDeSucesso = fibonacci12();
@@ -374,7 +396,7 @@ Cena *fibonacci10()
     Cena cena;
     cena.id = 49;
     cena.tipo = 0;
-    strcpy(cena.descricao, "Você não tem tempo de olhar o que aconteceu pois começa a sentir uma dor absurda. Seus músculos queimam e seu corpo instintivamente tenta empurrar as parede em direções opostas, mas o mecanismo é tão sólido quanto a porta. \n\nLogo você escutra um 'crek' e sente a dor excruciante de ossos quebrarem. \nA parede segue, quebrando os ossos das costas, cranio e a esmagar musculos e gordura. \n\nLíquidos se espalham e em um dos últimos pensamentos que te ocorre é que agora sabe de onde a sujeira da porta veio. \n\nTarde demais. \n\nVocê é esmagado impiedosamente pelo progresso do mecanismo e a imobilidade da porta.");
+    strcpy(cena.descricao, "Você não tem tempo de olhar o que aconteceu pois começa a sentir uma dor absurda. Seus músculos queimam e seu corpo instintivamente tenta empurrar as parede em direções opostas, mas o mecanismo é tão sólido quanto a porta. \n\nLogo você escutra um 'crek' e sente a dor excruciante de ossos quebrarem. \nA parede segue, quebrando os ossos das costas, cranio e a esmagar músculos e gordura. \n\nLíquidos se espalham e um dos últimos pensamentos que te ocorre é que agora sabe de onde a sujeira perto da porta veio. \n\nTarde demais. \n\nVocê é esmagado impiedosamente pelo progresso do mecanismo e a imobilidade da porta.");
     cena.cenaDeSucesso = ravenImage();
     return adicionarCena(cena);
 }
@@ -384,7 +406,7 @@ Cena *fibonacci11()
     Cena cena;
     cena.id = 50;
     cena.tipo = 3;
-    strcpy(cena.descricao, "Depois de alguns minutos o mecanismo reverte e a porta por você onde entrou se abre. \nO velho, ainda com a cara complacente entra com um saco de estopa e um balde com água com um pano meio rasgado pendurado no ombro.\n\nEle calmamente recolhe seus restos e os joga no saco, uma parte de cada vez, como se pensando em outra coisa. Algo mais importante. Talvez no que fazer para o jantar. \n\nDepois, ele tira o pano do ombro e molha no balde, torcendo antes de começar a limpar seus fluidos.\nSangue, urina, e fezes misturadas vão sendo limpas e torcidas no balde.\n\nEle trabalha por vários minutos nauseantes e de limpeza displicente e então desiste, deixando um pouco da sujetira ainda presa nos cantos, livre para secar até que o próximo herói destemido e tolo venha enfrentar o dragão.\n\nEle sai pela porta e a fecha, deixando novamente o corredor em um silêncio fúnebre.\n\n\tFim de Jogo");
+    strcpy(cena.descricao, "Depois de alguns minutos o mecanismo reverte e a porta por você onde entrou se abre. \nO velho, ainda com a cara complacente entra com um saco de estopa e um balde com água com um pano meio rasgado pendurado no ombro.\n\nEle calmamente recolhe seus restos e os joga no saco, uma parte de cada vez, como se pensando em outra coisa. Algo mais importante. Talvez no que fazer para o jantar. \n\nDepois, ele tira o pano do ombro e molha no balde, torcendo antes de começar a limpar seus fluídos.\nSangue, urina, e fezes misturadas vão sendo limpas e torcidas no balde.\n\nEle trabalha por vários minutos nauseantes e de limpeza displicente e então desiste, deixando um pouco da sujetira ainda presa nos cantos, livre para secar até que o próximo herói destemido e tolo venha enfrentar o dragão.\n\nEle sai pela porta e a fecha, deixando novamente o corredor em um silêncio fúnebre.\n\n\tFim de Jogo");
     return adicionarCena(cena);
 }
 

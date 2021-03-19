@@ -73,6 +73,7 @@ void loopDeCenas(Cena cenaAtiva)
     return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
     break;
   case 6:
+    clrscr();
     exibirCena(cenaAtiva);
     sucesso = palavrasPuzzle();
     return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));

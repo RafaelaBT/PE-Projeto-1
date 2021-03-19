@@ -2,7 +2,7 @@
 //Função auxiliar com 100 frases diferentes.
 //Fonte: http://falandodetrova.com.br/08cemtrovaspopulares
 
-const char *matriz[100] = {
+const char *matriz[200] = {
   "A arvore do amor se planta no centro do coracao; so a pode derrubar o golpe da ingratidao.",
   "A cantar ganhei dinheiro, a cantar se me acabou. O dinheiro mal ganhado, agua deu, agua levou.",
   "A desgraca do pau verde e ter o seco encostado: chega o fogo, queima o seco, fica o verde sapecado...",

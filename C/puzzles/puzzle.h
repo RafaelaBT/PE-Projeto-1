@@ -21,7 +21,7 @@ int respostaCorreta(char * resposta, Puzzle puzzle) {
 int executarPuzzle(Puzzle puzzle) {
   printf("%s", puzzle.descricao);
   char resposta[PUZZLE_RESPOSTA_MAX_SIZE];
-  scanf(" %s", resposta);
+  scanf(" %99[^\n]", resposta);
   if (respostaCorreta(resposta, puzzle)) {
     return 0;
   } else {
