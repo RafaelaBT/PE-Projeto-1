@@ -48,6 +48,8 @@ Cena *ravenImage();
 Cena *imagemPalavras();
 Cena *imagemPocoes();
 Cena *imagemDesmaio();
+Cena *imagemSenha();
+Cena *cenaSenha();
 
 Cena jogoTorreDoDragao()
 {
@@ -210,10 +212,27 @@ Cena *cena12()
     Cena cena;
     cena.id = 14;
     strcpy(cena.descricao, "Assim que voce entra na proxima sala consegue perceber que tem alguma coisa errada com o seu chao, como se ele estivesse conectado a algum mecanismo.\n\nA parte principal do mecanismo parece ser uma tabua conectada a parede, com tres bobinas giratorias e numeros de uma senha, assim como um cadeado.\n\nVoce se aproxima do desafio.\n\n");
-    cena.tipo = 4;
-    cena.cenaDeFalha = cena13();
-    cena.cenaDeSucesso = cena14();
+    cena.tipo = 0;
+    cena.cenaDeSucesso = imagemSenha();
     return adicionarCena(cena);
+}
+
+Cena *imagemSenha(){
+  Cena cena;
+  cena.id = 111;
+  cena.tipo = 7;
+  strcpy(cena.descricao, "./C/images/senha.txt");
+  cena.cenaDeSucesso = cenaSenha();
+  return adicionarCena(cena);
+}
+
+Cena *cenaSenha(){
+  Cena cena;
+  cena.id = 112;
+  cena.tipo = 4;
+  cena.cenaDeFalha = cena13();
+  cena.cenaDeSucesso = cena14();
+  return adicionarCena(cena);
 }
 
 Cena *cena13()
