@@ -22,8 +22,10 @@ void creditos()
 {
   char * participantes[5] = {
     "Yves-Medhard Tibe da Cunha Tibe-Bi - RA: 21074414",
+    "Danilo Misura de Oliveira - RA: 11006514",
     "Lucas Emanuel Andrada Barboza - RA: 11201920925",
-    "Carolina Baratto Barone - RA: 11201921793"
+    "Carolina Baratto Barone - RA: 11201921793",
+    "Rafaela Barbosa Trindade - RA: 11201921826"
   };
   printf("Esse jogo é parte das avaliações da matéria de PE da UFABC Q1/21 feito por:\n");
   for (int i = 0; i < 5; i++)

@@ -177,8 +177,8 @@ Cena *cena10()
 {
     Cena cena;
     cena.id = 12;
-    strcpy(cena.descricao, "As paginas são reviradas de novo, mas ao contrario, e o livro se fecha. O silencio total reina novamente.\n\nBAM!\n\nAs grades enferrujadas caem e voce escuta uma voz ja conhecida:\n\n - Muito bem, heroi! Voce passou meu primeiro enigma. Mas ainda ha um grande caminho pela frente...\n\nVoce atravessa a sala e passa a porta para o proximo desafio.");
     cena.tipo = 0;
+    strcpy(cena.descricao, "As paginas são reviradas de novo, mas ao contrario, e o livro se fecha. O silencio total reina novamente.\n\nBAM!\n\nAs grades enferrujadas caem e voce escuta uma voz ja conhecida:\n\n - Muito bem, heroi! Voce passou meu primeiro enigma. Mas ainda ha um grande caminho pela frente...\n\nVoce atravessa a sala e passa a porta para o proximo desafio.");
     cena.cenaDeSucesso = cena11();
     return adicionarCena(cena);
 }
@@ -186,7 +186,8 @@ Cena *cena10()
 Cena *cena11()
 {
     Cena cena;
-    cena.tipo = 13;
+    cena.id = 13;
+    cena.tipo = 0;
     strcpy(cena.descricao, "Ao sair da sala do livro voce percorre um corredor de pedra polida em paralelepípedos, com bastante limo nas partes mais baixas. Por um longo tempo não há portas até que você chega em uma grande de metal com um ar sólido. Você a observa por um tempo e depois testa a maceneta. Ela gira e a porta abre. Tomando fôlego você passa para dentro da próxima sala.");
     cena.cenaDeSucesso = cena12();
     return adicionarCena(cena);
