@@ -1,3 +1,6 @@
+#ifndef POTION_PUZZLE_H
+#define POTION_PUZZLE_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -100,3 +103,4 @@ void montarBilhete(int *pocao[], char *cores[]){
     waitForInput();
     clrscr();
 }
+#endif

@@ -1,3 +1,6 @@
+#ifndef PASSWORD_PUZZLE_H
+#define PASSWORD_PUZZLE_H
+
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
@@ -277,3 +280,5 @@ int puzzleSenha() {
     
     return senhaCorreta;
 }
+
+#endif

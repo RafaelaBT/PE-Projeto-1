@@ -74,7 +74,7 @@ void loopDeCenas(Cena cenaAtiva)
     break;
   case 6:
     exibirCena(cenaAtiva);
-    sucesso = palavrasPuzzle(5);
+    sucesso = palavrasPuzzle();
     return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
     break;
   case 7:

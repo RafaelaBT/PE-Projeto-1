@@ -52,7 +52,8 @@ int menuDeEscolha()
 
 int escolhaValida(int escolha)
 {
-  return escolha == 1 || escolha == 0;
+  return escolha == 0 ||
+         escolha == 1;
 }
 
 void menuLoop()
@@ -63,16 +64,13 @@ void menuLoop()
     int opcaoEscolhida = menuDeEscolha();
     if (escolhaValida(opcaoEscolhida))
     {
-      switch (opcaoEscolhida)
+      if (opcaoEscolhida == 0)
       {
-      case 1:
-        novoJogo(opcaoEscolhida);
-        break;
-      case 0:
         sair = 1;
-        break;
-      default:
-        break;
+      }
+      else
+      {
+        novoJogo(opcaoEscolhida);
       }
     }
     else
@@ -80,4 +78,5 @@ void menuLoop()
       opcaoEscolhida = 3;
     }
   } while (sair != 1);
+  free(CENAS);
 }
