@@ -16,5 +16,13 @@ typedef struct Cena
   struct Cena *escolhasPossiveis[MAX_ESCOLHAS_POSSIVEIS];
   int maxEscolhas;
 } Cena;
-
+/* Cenas Tipo:
+0 - Descricão
+1 - Escolha
+2 - Puzzle
+3 - Fim de Jogo
+4 - Senha
+5 - Poções
+6 - Palavras
+*/
 #endif

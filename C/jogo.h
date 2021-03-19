@@ -34,6 +34,7 @@ Cena carregarJogo(int jogo) {
   }
 }
 
+
 void loopDeCenas(Cena cenaAtiva)
 {
   clrscr();
@@ -63,6 +64,10 @@ void loopDeCenas(Cena cenaAtiva)
      break;
   case 5:
     sucesso = puzzlePocao();
+    return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
+    break;
+  case 6:
+    sucesso = palavrasPuzzle(5);
     return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
     break;
   default:
