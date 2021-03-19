@@ -10,7 +10,7 @@
 void montarBilhete(int *pocao[], char *cores[]);
 
 int puzzlePocao(){
-    int *pocao[4], resposta_quantidade[4], puzzle_certo;
+    int *pocao[4], resposta_quantidade[4], puzzle_certo=0;
     char *cores[]={"amarelo", "laranja", "lavanda", "magenta"};
     char resposta_cor[4][8];
     char *ordem[]={"primeira", "segunda", "terceira", "quarta"};
@@ -29,13 +29,13 @@ int puzzlePocao(){
 
         for(int criar_pocao=0; criar_pocao<4; criar_pocao++){
             printf("\nCor da %s pocao: ", ordem[criar_pocao]);
-            scanf(" %s", &*resposta_cor[criar_pocao]);
+            scanf("%s", &*resposta_cor[criar_pocao]);
             resposta_cor[criar_pocao][7] = '\0';
 
             printf("Quantidade da %s pocao: ", ordem[criar_pocao]);
             scanf("%d", &resposta_quantidade[criar_pocao]);
 
-            if((strcmp(resposta_cor[criar_pocao], cores[criar_pocao])==0) && (resposta_quantidade[criar_pocao] == *pocao[criar_pocao])){
+            if((strcmp(resposta_cor[criar_pocao], cores[criar_pocao])==0) && (resposta_quantidade[criar_pocao] == pocao[criar_pocao])){
                 puzzle_certo++;
             }
         }
@@ -61,16 +61,16 @@ void montarBilhete(int *pocao[], char *cores[]){
 
     //proporções das poções
     for(int cont=0; cont<4; cont++){
-        *pocao[cont] = (1+rand()%8)*100;
+        pocao[cont] = (1+rand()%8)*100;
     }
 
     //colocar as cores em ordem aleatória
-    for(int i=0; i<(strlen(*cores)+1); i++){
-        cor_aleatoria = rand()%strlen(*cores);
+    for(int i=0; i<(strlen(cores)+1); i++){
+        cor_aleatoria = rand()%4;
 
         const char* temporario = cores[cor_aleatoria];
         cores[cor_aleatoria] = cores[i];
-        strcpy(cores[i], temporario);
+        cores[i] = temporario;
     }
 
     //montar o bilhete
@@ -84,7 +84,7 @@ void montarBilhete(int *pocao[], char *cores[]){
                 strcpy(bilhete[3], "|    Antidoto Gas   |");
             }
             else{
-                snprintf(bilhete[linha], sizeof(bilhete[linha]), "|  %d - %s %d  |", num_lista, cores[num_lista-1], *pocao[num_lista-1]);
+                snprintf(bilhete[linha], sizeof(bilhete[linha]), "|  %d - %s %d  |", num_lista, cores[num_lista-1], pocao[num_lista-1]);
                 num_lista++;
             }
         }
@@ -99,8 +99,5 @@ void montarBilhete(int *pocao[], char *cores[]){
     }
 
     printf("\n\nEsse papel parece bem fragil, melhor memorizar isso...\n\n");
-
-    waitForInput();
-    clrscr();
 }
 #endif
