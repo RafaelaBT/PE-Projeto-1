@@ -21,7 +21,8 @@ int main()
 void creditos()
 {
   char * participantes[5] = {
-    "Yves-Medhard Tibe da Cunha Tibe-Bi - RA: 21074414"
+    "Yves-Medhard Tibe da Cunha Tibe-Bi - RA: 21074414",
+    "Lucas Emanuel Andrada Barboza - RA: 11201920925"
   };
   printf("Esse jogo é parte das avaliações da matéria de PE da UFABC Q1/21 feito por:\n");
   for (int i = 0; i < 5; i++)
@@ -34,7 +35,7 @@ void creditos()
 
 void agradecimentos()
 {
-  printf("Obrigado por jogar Torre do Dragão");
+  printf("Obrigado por jogar Torre do Dragão.");
 }
 
 int menuDeEscolha()
