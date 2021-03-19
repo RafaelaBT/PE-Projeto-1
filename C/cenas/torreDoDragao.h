@@ -44,10 +44,11 @@ Cena *fibonacci11();
 Cena *fibonacci12();
 Cena *fibonacci13();
 Cena *fibonacciImagem();
+Cena *ravenImage();
 
 Cena jogoTorreDoDragao()
 {
-    int numDeCenas = 50;
+    int numDeCenas = 60;
     free(CENAS);
     CENAS = (Cena *)malloc(sizeof(Cena) * numDeCenas);
 
@@ -373,7 +374,7 @@ Cena *fibonacci10()
     cena.id = 49;
     cena.tipo = 0;
     strcpy(cena.descricao, "Você não tem tempo de olhar o que aconteceu pois começa a sentir uma dor absurda. Seus músculos queimam e seu corpo instintivamente tenta empurrar as parede em direções opostas, mas o mecanismo é tão sólido quanto a porta. \n\nLogo você escutra um 'crek' e sente a dor excruciante de ossos quebrarem. \nA parede segue, quebrando os ossos das costas, cranio e a esmagar musculos e gordura. \n\nLíquidos se espalham e em um dos últimos pensamentos que te ocorre é que agora sabe de onde a sujeira da porta veio. \n\nTarde demais. \n\nVocê é esmagado impiedosamente pelo progresso do mecanismo e a imobilidade da porta.");
-    cena.cenaDeSucesso = fibonacci11();
+    cena.cenaDeSucesso = ravenImage();
     return adicionarCena(cena);
 }
 
@@ -383,6 +384,16 @@ Cena *fibonacci11()
     cena.id = 50;
     cena.tipo = 3;
     strcpy(cena.descricao, "Depois de alguns minutos o mecanismo reverte e a porta por você onde entrou se abre. \nO velho, ainda com a cara complacente entra com um saco de estopa e um balde com água com um pano meio rasgado pendurado no ombro.\n\nEle calmamente recolhe seus restos e os joga no saco, uma parte de cada vez, como se pensando em outra coisa. Algo mais importante. Talvez no que fazer para o jantar. \n\nDepois, ele tira o pano do ombro e molha no balde, torcendo antes de começar a limpar seus fluidos.\nSangue, urina, e fezes misturadas vão sendo limpas e torcidas no balde.\n\nEle trabalha por vários minutos nauseantes e de limpeza displicente e então desiste, deixando um pouco da sujetira ainda presa nos cantos, livre para secar até que o próximo herói destemido e tolo venha enfrentar o dragão.\n\nEle sai pela porta e a fecha, deixando novamente o corredor em um silêncio fúnebre.\n\n\tFim de Jogo");
+    return adicionarCena(cena);
+}
+
+Cena *ravenImage()
+{
+    Cena cena;
+    cena.id = 54;
+    cena.tipo = 7;
+    strcpy(cena.descricao, "./C/images/raven.txt");
+    cena.cenaDeSucesso = fibonacci11();
     return adicionarCena(cena);
 }
 
