@@ -4,13 +4,14 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
+#include "../helpers.h"
 
 #define QUANT_NUM_COR 3
 #define QUANT_NUM_ERR 5
 #define QUANT_DICAS_PUZZLESENHA 5
 #define MAX_PUZZLESENHA 8
 #define VAL_PAD_PUZZLESENHA 100
-#define ID_PUZZLESENHA 33
+#define ID_PUZZLESENHA 4
 
 void gerarNumerosAleatorios(int* numeros, int tam) {
     srand(time(NULL));
@@ -141,15 +142,12 @@ int puzzleSenha() {
     int corretos[3];
     int errados[5];
 
-    //A função sizeof(tipo) retorna um long que é o número de bytes ocupados na memória para determinado tipo de dado
-    //(vetorDestino, &vetorFonte[posição inicial], tamanhoDaMemória)
+    //A funï¿½o sizeof(tipo) retorna um long que ï¿½ o nï¿½mero de bytes ocupados na memï¿½ria para determinado tipo de dado
+    //(vetorDestino, &vetorFonte[posiï¿½o inicial], tamanhoDaMemï¿½ria)
     memcpy(corretos, &numeros[0], 3 * sizeof(int));
     memcpy(errados, &numeros[3], 5 * sizeof(int));
 
-    //imprimirValoresSenha(corretos, errados);
-
     int ref[6][3];
-
     for (int i = 0; i < 6; i++) {
         for (int j = 0; j < 3; j++) {
             ref[i][j] = VAL_PAD_PUZZLESENHA;
@@ -166,13 +164,13 @@ int puzzleSenha() {
 
     int erradosDuplicados[10];
     memcpy(&erradosDuplicados[0], &errados[0], QUANT_NUM_ERR * sizeof(int));
-    //Impede que em uma mesma dica (dica {3}) tenham dois números errados iguais
+    //Impede que em uma mesma dica (dica {3}) tenham dois nï¿½meros errados iguais
     do {
         embaralharNumeros(errados, 5);
     } while (erradosDuplicados[4] == errados[0] || erradosDuplicados[4] == errados[1]);
     memcpy(&erradosDuplicados[5], &errados[0], QUANT_NUM_ERR * sizeof(int));
 
-    //Índices que vão auxiliar no acesso dos vetores de nums corretos e errados
+    //ï¿½ndices que vï¿½o auxiliar no acesso dos vetores de nums corretos e errados
     int ordenadorC = 0;
     int ordenadorE = 0;
 
@@ -182,11 +180,11 @@ int puzzleSenha() {
     //{4}Dois numeros corretos, mas nos lugares errados
     //{5}Um numero correto, mas no lugar errado
 
-    //Índices que vão auxiliar na alocação com base na posição dos números corretos
+    //ï¿½ndices que vï¿½o auxiliar na alocaï¿½o com base na posiï¿½o dos nï¿½meros corretos
     int index = rand() % 3;
     int index2;
 
-    //Todos os números corretos devem estar presentes pelo menos 1 vez
+    //Todos os nï¿½meros corretos devem estar presentes pelo menos 1 vez
     //Numero correto [0] necessariamente presente: {1} num correto, pos errada
     do {
         index = rand() % 3;
@@ -223,7 +221,7 @@ int puzzleSenha() {
     } while (ref[0][index] == corretos[ordenadorC] || index == index2);
     ref[4][index] = corretos[ordenadorC];
 
-    //Numeros errados: {1}{2}{3}{4}{5} ocupam todas as posições restantes
+    //Numeros errados: {1}{2}{3}{4}{5} ocupam todas as posiï¿½es restantes
     for (int i = 1; i < 6; i++) {
         for (int j = 0; j < 3; j++) {
             if (ref[i][j] == VAL_PAD_PUZZLESENHA) {
@@ -249,6 +247,7 @@ int puzzleSenha() {
     int chances = 3;
     int senhaCorreta = 0;
     do {
+        //imprimirValoresSenha(corretos, errados);
         imprimirDicasSenha(valoresOrdenados, 1);
 
         printf("\nEntre a senha separada por espacos\n-> ");
@@ -259,20 +258,20 @@ int puzzleSenha() {
             printf("\nSenha correta! :)\n\n");
             chances = 0;
             senhaCorreta = 1;
-            system("pause");
-            system("cls");
+            waitForInput();
+            clrscr();
         }
         else {
             printf("\nSenha errada! >:(\n\n");
             chances--;
             if (chances == 2) {
-                printf("Parece que ainda ha uma tentativa...\n\n");
+                printf("Parece que ainda ha uma chance...\n\n");
             }
             else if (chances == 1) {
                 printf("Ja nao da para saber quantas tentativas restam...\n\n");
             }
-            system("pause");
-            system("cls");
+            waitForInput();
+            clrscr();
         }
     } while (chances > 0);
     

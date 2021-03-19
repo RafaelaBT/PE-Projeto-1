@@ -9,7 +9,7 @@
 //incluir nome do puzzle no loopCena, caso 4
 
 void cronometro(int sleepTime){
-  for (int i = sleepTime; i >= 0; i--)
+  for (int i = 10; i >= 0; i--)
   {
     printf("\n\t%d", i); //printa os segundos
     sleep(1);

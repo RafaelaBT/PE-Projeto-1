@@ -9,30 +9,21 @@ int DESCRICAO_MAX_SIZE = PUZZLE_DESCRICAO_MAX_SIZE;
 int RESPOSTA_MAX_SIZE = PUZZLE_RESPOSTA_MAX_SIZE;
 
 int fibonnaci(int n);
-Puzzle fibonacciPuzzle(int inicio, int quantidade, int desejado, char * descricaoInicial);
+Puzzle fibonacciPuzzle(int inicio, int quantidade, int desejado);
 
 Puzzle fibonacciPuzzle(
   int inicio,
   int quantidade,
-  int desejado,
-  char * descricaoInicial
+  int desejado
 ) {
   char descricao[DESCRICAO_MAX_SIZE];
   const int bufferSize = DESCRICAO_MAX_SIZE;
   int perElementBufferUsed, bufferUsed = 0;
   int bufferLeft = bufferSize - bufferUsed;
 
-  perElementBufferUsed = snprintf(descricao, bufferSize, "%s", descricaoInicial);
-  bufferUsed += perElementBufferUsed;
-  bufferLeft -= perElementBufferUsed;
-
   for (int i = inicio; i < inicio + quantidade; i++) {
     if (bufferLeft > 0) {
-      if (i == (inicio + quantidade -1)) {
-        perElementBufferUsed = snprintf(&descricao[bufferUsed], bufferSize, "%i", fibonnaci(i));
-      } else {
-        perElementBufferUsed = snprintf(&descricao[bufferUsed], bufferSize, "%i, ", fibonnaci(i));
-      }
+      perElementBufferUsed = snprintf(&descricao[bufferUsed], bufferSize, "\n\t%i° = %i", i, fibonnaci(i));
       bufferUsed += perElementBufferUsed;
       bufferLeft -= perElementBufferUsed;
     }
