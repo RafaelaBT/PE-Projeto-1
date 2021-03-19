@@ -20,7 +20,16 @@ int main()
 
 void creditos()
 {
-  printf("Esse jogo é parte das avaliações da matéria de PE da UFABC.. feito por....");
+  char * participantes[5] = {
+    "Yves-Medhard Tibe da Cunha Tibe-Bi - RA: 21074414"
+  };
+  printf("Esse jogo é parte das avaliações da matéria de PE da UFABC Q1/21 feito por:\n");
+  for (int i = 0; i < 5; i++)
+  {
+    if(participantes[i] != NULL)
+      printf("\t%s\n", participantes[i]);
+
+  }
 }
 
 void agradecimentos()
@@ -31,7 +40,7 @@ void agradecimentos()
 int menuDeEscolha()
 {
   clrscr();
-  printf("Digite uma das opções e pressione Enter para confimrar:\n1: Jogo Torre do Dragão\ns: Sair\nSua Escolha: ");
+  printf("Digite uma das opções e pressione Enter para confirmar:\n1: Jogo Torre do Dragão\ns: Sair\nSua Escolha: ");
   int escolha = readChar();
   switch (escolha)
   {

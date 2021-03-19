@@ -36,14 +36,12 @@ int cenaRegistrada(Cena cena);
 
 Cena *adicionarCena(Cena cena)
 {
-  printf("Identificador de Cena %i\n", cena.id);
   if (cenaRegistrada(cena))
   {
     return encontrarCena(cena.id);
   }
   else
   {
-    printf("Adicionando Cena %i\n", CURRENT_CENAS);
     CENAS[CURRENT_CENAS] = cena;
     return &CENAS[CURRENT_CENAS++];
   }

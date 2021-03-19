@@ -43,7 +43,7 @@ void clrscr()
 
 void waitForInput()
 {
-  printf("\n\nPressione 'Enter' para continuar. . .\n");
+  printf("\n\nPressione 'Enter' para continuar. . .");
   fflush(stdout);
   getchar();
   myflush(stdin);
