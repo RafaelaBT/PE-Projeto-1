@@ -67,6 +67,7 @@ Cena introducao()
     strcpy(cena.descricao, "Voce eh um heroi renomado passando por uma vila praticamente destruida, os moradores contam que um dragao vive em um castelo no topo da montanha e recentemente vem atacando a vila.\n\nTodos ficam aliviados quando seus serviços sao oferecidos, e assim você parte para o castelo - mas será que sobreviverá as inumeras armadilhas do local e a força de um dragao?");
     cena.tipo = 0;
     cena.id = 0;
+    //Pular direto pro meu puzzle
     cena.cenaDeSucesso = imagemInicio();
     CENAS[CURRENT_CENAS] = cena;
     return CENAS[CURRENT_CENAS++];
