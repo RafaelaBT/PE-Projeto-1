@@ -10,7 +10,7 @@
 #include "../helpers.h"
 
 #define QUANT_NUM_COR 3
-#define QUANT_NUM_ERR 5
+#define QUANT_NUM_ERR 6
 #define QUANT_DICAS_PUZZLESENHA 5
 #define MAX_PUZZLESENHA 8
 #define VAL_PAD_PUZZLESENHA 100
@@ -89,8 +89,8 @@ void imprimirDicasSenha(int* valoresOrdenados, int linha) {
     }  
     if (linha <= QUANT_DICAS_PUZZLESENHA) {
         printf("[");
-        for (int i = QUANT_NUM_COR * (linha - 1); i < QUANT_NUM_COR * linha; i++) {
-            if (i != QUANT_NUM_COR * linha - 1) {
+        for (int i = QUANT_NUM_COR * linha; i < QUANT_NUM_COR * (linha + 1); i++) {
+            if (i != QUANT_NUM_COR * (linha+1) - 1) {
                 if (valoresOrdenados[i] < 10) {
                     printf("0%d - ", valoresOrdenados[i]);
                 }
@@ -139,22 +139,22 @@ int verificarSenha(int* senha, int* corretos) {
 
 int puzzleSenha() {
 
-    int numeros[8];
-    gerarNumerosAleatorios(numeros, 8);
+    int numeros[9];
+    gerarNumerosAleatorios(numeros, 9);
+    
+    int gabarito[3];
 
     int corretos[3];
-    int errados[5];
+    int errados[6];
 
-    //A fun�o sizeof(tipo) retorna um long que � o n�mero de bytes ocupados na mem�ria para determinado tipo de dado
-    //(vetorDestino, &vetorFonte[posi�o inicial], tamanhoDaMem�ria)
     memcpy(corretos, &numeros[0], 3 * sizeof(int));
-    memcpy(errados, &numeros[3], 5 * sizeof(int));
+    memcpy(gabarito, &numeros[0], 3 * sizeof(int));
+    memcpy(errados, &numeros[3], 6 * sizeof(int));
 
     int ref[6][3];
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < 3; j++) {
-            ref[i][j] = VAL_PAD_PUZZLESENHA;
-        }
+    int *refp = ref;
+    for (int i = 0; i < 18; i++) {
+        *(refp+i) = VAL_PAD_PUZZLESENHA;
     }
 
     //{0}Numeros corretos (na ordem correta)
@@ -163,15 +163,19 @@ int puzzleSenha() {
     }
 
     embaralharNumeros(corretos, 3);
-    embaralharNumeros(errados, 5);
+    embaralharNumeros(errados, 6);
 
-    int erradosDuplicados[10];
-    memcpy(&erradosDuplicados[0], &errados[0], QUANT_NUM_ERR * sizeof(int));
+    int erradosParaRef[12];
+    memcpy(&erradosParaRef[0], &errados[0], QUANT_NUM_ERR * sizeof(int));
     //Impede que em uma mesma dica (dica {3}) tenham dois n�meros errados iguais
     do {
-        embaralharNumeros(errados, 5);
-    } while (erradosDuplicados[4] == errados[0] || erradosDuplicados[4] == errados[1]);
-    memcpy(&erradosDuplicados[5], &errados[0], QUANT_NUM_ERR * sizeof(int));
+        embaralharNumeros(errados, 6);
+    } while (erradosParaRef[4] == errados[0] || erradosParaRef[4] == errados[1]);
+    memcpy(&erradosParaRef[6], &errados[0], QUANT_NUM_ERR * sizeof(int));
+
+    if(erradosParaRef[10]==erradosParaRef[11]){
+      erradosParaRef[9] = erradosParaRef[10];
+    }
 
     //�ndices que v�o auxiliar no acesso dos vetores de nums corretos e errados
     int ordenadorC = 0;
@@ -228,36 +232,25 @@ int puzzleSenha() {
     for (int i = 1; i < 6; i++) {
         for (int j = 0; j < 3; j++) {
             if (ref[i][j] == VAL_PAD_PUZZLESENHA) {
-                ref[i][j] = erradosDuplicados[ordenadorE];
+                ref[i][j] = erradosParaRef[ordenadorE];
                 ordenadorE++;
             }
         }
     }
 
-    int valoresOrdenados[15];
-    int aux = 0;
-    for (int i = 1; i < 6; i++) {
-        for (int j = 0; j < 3; j++) {
-            valoresOrdenados[aux] = ref[i][j];
-            aux++;
-        }
-    }
-    
-    for (int i = 0; i < QUANT_NUM_COR; i++) {
-        corretos[i] = ref[0][i];
-    }
+    imprimirValoresSenha(gabarito, errados);
 
     int chances = 3;
     int senhaCorreta = 0;
     do {
         //imprimirValoresSenha(corretos, errados);
-        imprimirDicasSenha(valoresOrdenados, 1);
+        imprimirDicasSenha(refp, 1);
 
         printf("\nEntre a senha separada por espacos\n-> ");
         int senha[QUANT_NUM_COR];
         receberSenha(senha);
 
-        if (verificarSenha(senha, corretos)){
+        if (verificarSenha(senha, gabarito)){
             printf("\nSenha correta! :)\n\n");
             chances = 0;
             senhaCorreta = 1;
