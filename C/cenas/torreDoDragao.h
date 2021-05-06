@@ -29,6 +29,9 @@ Cena *cena15();
 Cena *cena16();
 Cena *cena17();
 Cena *cena18();
+Cena *cena19();
+Cena *cena20();
+Cena *cena21();
 Cena *imagemInicio();
 Cena *fibonacci1();
 Cena *fibonacci2();
@@ -299,6 +302,36 @@ Cena *cena18()
     Cena cena;
     cena.id = 20;
     strcpy(cena.descricao, "Voce abre a porta e segue pelo corredor do castelo. Voce sobreviveu ate aqui. nada pode te deter certo?");
+    cena.tipo = 0;
+    cena.cenaDeSucesso = fibonacci1();
+    return adicionarCena(cena);
+}
+
+Cena *cena19()
+{
+  Cena cena;
+  cena.id = 21
+  strcpy(cena.descricao, "");
+  cena.tipo = 8;
+  cena.cenaDeSucesso = cena21();
+  cena.cenaDeFalha = cena20();
+  return adicionarCena(cena);
+}
+
+Cena *cena20()
+{
+    Cena cena;
+    cena.id = 22;
+    strcpy(cena.descricao, "");
+    cena.tipo = 3;
+    return adicionarCena(cena);
+}
+
+Cena *cena21()
+{
+    Cena cena;
+    cena.id = 23;
+    strcpy(cena.descricao, "");
     cena.tipo = 0;
     cena.cenaDeSucesso = fibonacci1();
     return adicionarCena(cena);
