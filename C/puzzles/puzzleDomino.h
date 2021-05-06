@@ -397,61 +397,57 @@ void limparMemoria(PecaDomino* monteParaApagar)
 
 int puzzleDomino()
 {
-    monte = criarMonte();
+  for(int tentativas = 0; tentativas < 3; tentativas++){
 
-    //criar monte do jogador e do computador
-    PecaDomino *monteJogador = NULL;
-    monteJogador = comprarPecas(monteJogador, 7);
+      monte = criarMonte();
 
-    PecaDomino *monteComputador = NULL;
-    monteComputador = comprarPecas(monteComputador, 7);
+      //criar monte do jogador e do computador
+      PecaDomino *monteJogador = NULL;
+      monteJogador = comprarPecas(monteJogador, 7);
 
-    //iniciar o tabuleiro
-    tabuleiro_esquerda = NULL;
-    tabuleiro_direita = NULL;
-    tabuleiro_esquerda = comprarPecas(tabuleiro_esquerda, 1);
-    tabuleiro_direita = tabuleiro_esquerda;
+      PecaDomino *monteComputador = NULL;
+      monteComputador = comprarPecas(monteComputador, 7);
 
-    for(int tentativas = 0; tentativas < 3; tentativas++)
-    {
-      while(empate < 4)
-      {
-            empate = 0;
+      //iniciar o tabuleiro
+      tabuleiro_esquerda = NULL;
+      tabuleiro_direita = NULL;
+      tabuleiro_esquerda = comprarPecas(tabuleiro_esquerda, 1);
+      tabuleiro_direita = tabuleiro_esquerda;
 
-            monteJogador = vezDoJogador(monteJogador, 1);
 
-            if(monteJogador == NULL)
-            {
-                break;
-            }
+      while(empate < 4){
+          empate = 0;
 
-            monteComputador = vezDoComputador(monteComputador, 1);
+          monteJogador = vezDoJogador(monteJogador, 1);
 
-            imprimirPecas(tabuleiro_esquerda);
+          if(monteJogador == NULL){
+              break;
+          }
 
-            if(monteComputador == NULL)
-            {
-                break;
-            }
+          monteComputador = vezDoComputador(monteComputador, 1);
+
+          imprimirPecas(tabuleiro_esquerda);
+
+          if(monteComputador == NULL){
+              break;
+          }
       }
 
-      waitForInput();
-      clrscr();
+      system("pause");
+      system("cls");
 
-      if(monteJogador == NULL)
-      {
+      if(monteJogador == NULL){
           printf("Vitoria!!!!");
           return 1;
       }
-      else if(monteComputador == NULL)
-      {
-          printf("Seu oponente venceu... Tente de novo");
+      else if(monteComputador == NULL){
+          printf("Nao foi dessa vez... Tente de novo");
       }
-      else
-      {
+      else{
           printf("Parece que foi um empate :(\n\nTente de novo...");
       }
     }
+
 
     limparMemoria(monte);
     limparMemoria(monteComputador);
