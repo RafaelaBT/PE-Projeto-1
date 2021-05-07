@@ -2,7 +2,7 @@
 //Função auxiliar com 100 frases diferentes.
 //Fonte: http://falandodetrova.com.br/08cemtrovaspopulares
 
-const char *matriz[200] = {
+const char *vetor[150] = {
   "A arvore do amor se planta no centro do coracao; so a pode derrubar o golpe da ingratidao.",
   "A cantar ganhei dinheiro, a cantar se me acabou. O dinheiro mal ganhado, agua deu, agua levou.",
   "A desgraca do pau verde e ter o seco encostado: chega o fogo, queima o seco, fica o verde sapecado...",
@@ -90,13 +90,13 @@ const char *matriz[200] = {
   "Vossos cabelos na testa e o que vos da tanta graca; parecem meadas de oiro aonde o sol se embaraca.",
   "Um suspiro de repente, um certo mudar de cor, sao infaliveis sinais de quem sofre o mal de amor.",
   "Ter amor e muito bom quando ha correspondencia; mas amar sem ser amado faz perder a paciencia.",
-  "Todo homem que diz que sim depois de ter dito ‘nao’; primeiro fala o orgulho depois fala o coracao.",
+  "Todo homem que diz que sim depois de ter dito nao; primeiro fala o orgulho depois fala o coracao.",
   "Triste daquele a quem falta, na vida, que se evapora, uma crianca que salta, que canta, que ri e chora!",
   "Triste durmo, triste acordo, triste torno a amanhecer. Pra mim tudo e tristeza, serei triste ate morrer.",
   "Triste sou, triste me vejo sem a tua companhia; tao triste, que nem me lembro se alegre fui algum dia.",
   "Tudo o que e triste no mundo tomara que fosse meu, para ver se tudo junto era mais triste do que eu.",
   "Tu te queixas, eu me queixo... Qual de nos tem razao? Tu te queixas do meu zelo; eu, da tua ingratidao.",
-  "Sao tres coisas neste mundo que um homem de gosto quer, uma casinha asseada, um 'pinho' bom e mulher.",
+  "Sao tres coisas neste mundo que um homem de gosto quer, uma casinha asseada, um pinho bom e mulher.",
   "Se esta rua fosse minha eu mandava ladrilhar, com pedrinhas de brilhante, para meu bem passar.",
   "Se eu pensara quem tu eras, quem tu avias de ser, nao dava meu coracao para tao cedo sofrer.",
   "Se mil coracoes tivesse com eles eu te amaria; mil vidas que Deus me desse em ti as empregaria.",
@@ -107,5 +107,5 @@ const char *matriz[200] = {
 
 const char * banco_frases(int n)
 {
-  return matriz[n - 1];
+  return vetor[n - 1];
 }

@@ -5,6 +5,7 @@
 #include "../puzzles/puzzlePocao.h"
 #include "../puzzles/puzzle-senha.h"
 #include "../puzzles/palavrasPuzzle.h"
+#include "../puzzles/puzzleDomino.h"
 #include "cena.h"
 #include <string.h>
 
@@ -29,6 +30,10 @@ Cena *cena15();
 Cena *cena16();
 Cena *cena17();
 Cena *cena18();
+Cena *cena19();
+Cena *cena20();
+Cena *cena21();
+Cena *cena22();
 Cena *imagemInicio();
 Cena *fibonacci1();
 Cena *fibonacci2();
@@ -107,18 +112,7 @@ Cena *cena3()
 {
     Cena cena;
     cena.id = 5;
-    char cenaDescricao[] = "Apos atravessar o hall de entrada, você entra em um quarto iluminado por velas e com inumeros pergaminhos e livros espalhados pelo chao. No centro da sala, se encontra uma mesa com um livro e uma pena de escrever.\n\nVoce escuta uma voz amargurada, mas parece que ela esta muito distante e vai se esvaindo com o passar do tempo.\n\n\t'A memoria é uma dadiva...\n\tProteja-a ou ela sera levada.\n\tO tempo nao espera nem o seu mais fiel amigo...'\n\nDe repente, o livro se abre, suas paginas sao reviradas freneticamente e param..., acompanhadas de um silencio profundo. So ha voce na sala.\nPalavras comecam a serem escritas no livro.";
-    strcpy(cena.descricao, cenaDescricao);
-    cena.tipo = 0;
-    cena.cenaDeSucesso = cena4();
-    return adicionarCena(cena);
-}
-
-Cena *cena4()
-{
-    Cena cena;
-    cena.id = 6;
-    char cenaDescricao[] = "Voce se sente atordoado, parece que algo esta testando sua sanidade.\n\nVoce se aproxima do livro.\n\nMas sera que voce esta pronto? Ao tocar a pena, o tempo passara a correr.\n\n(NOTA: As frases adaptadas desse puzzle foram retiradas de 'CEM TROVAS POPULARES (anonimas)' da Colecao 'Trovadores Brasileiros' - Organizacao de Luiz Otavio e J. G. de Araujo Jorge.)";
+    char cenaDescricao[] = "Apos atravessar o hall de entrada, você entra em um quarto iluminado por velas e com inumeros pergaminhos e livros espalhados pelo chao.\nNo centro da sala, se encontra uma mesa com um livro e uma pena de escrever.\n\nVoce escuta uma voz amargurada, mas parece que ela esta muito distante e vai se esvaindo com o passar do tempo.\n\n\t'A memoria é uma dadiva...\n\tProteja-a ou ela sera levada.\n\tO tempo nao espera nem o seu mais fiel amigo...'\n\nDe repente, o livro se abre, suas paginas sao reviradas freneticamente e param..., acompanhadas de um silencio profundo. So ha voce na sala.\n\nPalavras comecam a serem escritas no livro.";
     strcpy(cena.descricao, cenaDescricao);
     cena.tipo = 0;
     cena.cenaDeSucesso = imagemPalavras();
@@ -131,6 +125,17 @@ Cena *imagemPalavras()
     cena.id = 66;
     cena.tipo = 7;
     strcpy(cena.descricao, "./C/images/palavras.txt");
+    cena.cenaDeSucesso = cena4();
+    return adicionarCena(cena);
+}
+
+Cena *cena4()
+{
+    Cena cena;
+    cena.id = 6;
+    char cenaDescricao[] = "Voce se sente atordoado, parece que algo esta testando sua sanidade.\nSe aproximando do livro, a principio, parece conseguir entender as palavras.\n\nDecore o máximo que puder! Mas sera que voce esta pronto? \n\nATENCAO: Ao tocar a pena, o tempo passara a correr.\n\n(NOTA: As frases adaptadas desse puzzle foram retiradas de 'CEM TROVAS POPULARES (anonimas)' da Colecao 'Trovadores Brasileiros' - Organizacao de Luiz Otavio e J. G. de Araujo Jorge.)";
+    strcpy(cena.descricao, cenaDescricao);
+    cena.tipo = 0;
     cena.cenaDeSucesso = cena5();
     return adicionarCena(cena);
 }
@@ -139,8 +144,8 @@ Cena *cena5()
 {
     Cena cena;
     cena.id = 7;
-    cena.tipo = 6;
     strcpy(cena.descricao, "");
+    cena.tipo = 6;
     cena.cenaDeSucesso = cena10();
     cena.cenaDeFalha = cena6();
     return adicionarCena(cena);
@@ -149,11 +154,10 @@ Cena *cena5()
 Cena *cena6()
 {
     Cena cena;
-    cena.id = 7;
-    strcpy(cena.descricao, "As palavras desaparecem. Voce se sente mais tonto e se apoia na mesa, olhando ao redor. Aquela pilha de livros estava ali antes? Voce nao tem mais certeza... nao, foco! Voce nao pode desistir, nao agora. Voce ainda tem muito o que percorrer\nVoce tenta se recompor.");
-    cena.tipo = 6;
-    cena.cenaDeSucesso = cena10();
-    cena.cenaDeFalha = cena7();
+    cena.id = 8;
+    strcpy(cena.descricao, "As palavras desaparecem. Voce se sente mais tonto e se apoia na mesa, olhando ao redor. Aquela pilha de livros estava ali antes? Voce nao tem mais certeza... nao, foco! Voce nao pode desistir, nao agora. Voce ainda tem muito o que percorrer.\nVoce tenta se recompor.");
+    cena.tipo = 0;
+    cena.cenaDeSucesso = cena7();
     return adicionarCena(cena);
 }
 
@@ -161,10 +165,20 @@ Cena *cena7()
 {
     Cena cena;
     cena.id = 9;
-    strcpy(cena.descricao, "Voce se sente esgotado e sua visao vai se fechando, quase nao consegue segurar mais a pena. Coitado. Por que voce veio? Ou melhor, quando? Voce nao se lembra... mas sabe que precisa tentar mais uma vez, e a sua unica chance de sair daqui.\n\nCom toda a sua força restante, voce se aproxima novamente.");
+    strcpy(cena.descricao, "");
     cena.tipo = 6;
     cena.cenaDeSucesso = cena10();
-    cena.cenaDeFalha = imagemDesmaio();
+    cena.cenaDeFalha = cena8();
+    return adicionarCena(cena);
+}
+
+Cena *cena8()
+{
+    Cena cena;
+    cena.id = 88;
+    strcpy(cena.descricao, "Voce se sente esgotado e sua visao vai se fechando, quase nao consegue segurar mais a pena. Coitado. Por que voce veio? Ou melhor, quando? Voce nao se lembra... mas sabe que precisa tentar mais uma vez, e a sua unica chance de sair daqui.\n\nCom toda a sua força restante, voce se aproxima novamente.");
+    cena.tipo = 0;
+    cena.cenaDeSucesso = cena22();
     return adicionarCena(cena);
 }
 
@@ -300,7 +314,48 @@ Cena *cena18()
     cena.id = 20;
     strcpy(cena.descricao, "Voce abre a porta e segue pelo corredor do castelo. Voce sobreviveu ate aqui. nada pode te deter certo?");
     cena.tipo = 0;
+    cena.cenaDeSucesso = cena19();
+    return adicionarCena(cena);
+}
+
+Cena *cena19()
+{
+  Cena cena;
+  cena.id = 21;
+  strcpy(cena.descricao, "");
+  cena.tipo = 8;
+  cena.cenaDeSucesso = cena21();
+  cena.cenaDeFalha = cena20();
+  return adicionarCena(cena);
+}
+
+Cena *cena20()
+{
+    Cena cena;
+    cena.id = 22;
+    strcpy(cena.descricao, "");
+    cena.tipo = 3;
+    return adicionarCena(cena);
+}
+
+Cena *cena21()
+{
+    Cena cena;
+    cena.id = 23;
+    strcpy(cena.descricao, "");
+    cena.tipo = 0;
     cena.cenaDeSucesso = fibonacci1();
+    return adicionarCena(cena);
+}
+
+Cena *cena22()
+{
+    Cena cena;
+    cena.id = 99;
+    strcpy(cena.descricao, "");
+    cena.tipo = 6;
+    cena.cenaDeSucesso = cena10();
+    cena.cenaDeFalha = imagemDesmaio();
     return adicionarCena(cena);
 }
 

@@ -13,9 +13,11 @@ void cronometro();
 char *embaralha(char *normal);
 char *uppercase(char *palavra);
 int palavrasPuzzle();
+int tempo = 25;
+int intervalo = 111;
 
-void cronometro(){
-  for (int i=10;i>=0;i--){
+void cronometro(int t){
+  for (int i=t;i>=0;i--){
     printf("\t%i\n", i);
     sleep(1);
   }
@@ -44,24 +46,31 @@ char *uppercase(char *palavra){
 int palavrasPuzzle()
 {
   srand(time(0)); //semente
-  char frase[200], frase_copia[200], resposta[200];
-  strcpy(frase, banco_frases(rand() % 100)); //sorteia uma frase entre as 100
+  char frase[150], frase_copia[150], resposta[150];
+  intervalo = intervalo - 8;
+  do{
+    strcpy(frase, banco_frases(rand() % 100)); //sorteia uma frase entre as 100
+  }while(strlen(frase) < intervalo); //maior tempo, mais chance de pegar frases longas
   uppercase(frase); //transforma a frase em letra maiúscula
-  printf("Voce pega a pena, a principio, parece conseguir entender as palavras:\n\n");
-  breakLines(1);
   printf("'%s'\n\n", frase); //printa a frase sorteada
-  breakLines(1);
-  printf("OBS.: Aguarde terminar tempo para digitar.\n");
-  cronometro(); //inicia o cronômetro
+  tempo = tempo - 5; //reduz o tempo a cada chance
+  cronometro(tempo); //inicia o cronômetro
   clrscr();
   printf("A frase se transforma diante dos seus olhos em uma língua desconhecida:\n\n");
   strcpy(frase_copia, frase); //cria uma cópia da frase para ser alterada
   printf("'%s'", embaralha(frase_copia)); //printa a frase embaralhada
-  breakLines(2);
+  breakLines(1);
   printf("\nTente traduzir a frase do mesmo jeito (atencao a pontuacao): \n");
-  scanf(" %199[^\n]", resposta);
-  printf("\nFrase: %s", frase);
-  printf("\nResposta: %s", uppercase(resposta));
+  scanf(" %150[^\n]", resposta);
+  int t;
+  while ((t = fgetc(stdin)) != '\n' && t != EOF);
+  breakLines(1);
+  printf("-----------------------------------------------");
+  breakLines(1);
+  printf("\nFRASE: %s", frase);
+  breakLines(1);
+  printf("\nRESPOSTA: %s", uppercase(resposta));
+  breakLines(1);
   waitForInput();
   if (strcmp(frase, uppercase(resposta))==0){
     return 1;
