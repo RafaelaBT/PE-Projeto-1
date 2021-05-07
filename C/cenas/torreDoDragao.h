@@ -5,6 +5,7 @@
 #include "../puzzles/puzzlePocao.h"
 #include "../puzzles/puzzle-senha.h"
 #include "../puzzles/palavrasPuzzle.h"
+#include "../puzzles/puzzleDomino.h"
 #include "cena.h"
 #include <string.h>
 
@@ -320,7 +321,7 @@ Cena *cena18()
 Cena *cena19()
 {
   Cena cena;
-  cena.id = 21
+  cena.id = 21;
   strcpy(cena.descricao, "");
   cena.tipo = 8;
   cena.cenaDeSucesso = cena21();
