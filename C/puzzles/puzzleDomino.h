@@ -1,5 +1,5 @@
-#ifndef POTION_DOMINO_H
-#define POTION_DOMINO_H
+#ifndef DOMINO_PUZZLE_H
+#define DOMINO_PUZZLE_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -399,6 +399,9 @@ int puzzleDomino()
 {
   PecaDomino *monteJogador = NULL;
   PecaDomino *monteComputador = NULL;
+
+  printf("Olhando para cima voce percebe que o alcapao continua aberto, mas fora do seu alcance. Na sala se encontra um homem parecendo assustado, sentado em uma mesa com uma partida de domino na mesa a sua frente.\n\nVoce o pergunta se ele esta bem e como veio parar aqui, e entao escuta:\n\n - Ele me levou no meio da noite… Ja estou preso nessa sala a muitos dias, ele disse que me mataria se eu tentasse fugir, e me da comida se eu derroto quem entra nessa sala em uma partida do jogo. Eu nao quero que ninguem mais morra, mas tambem nao quero morrer de fome… preciso voltar para os meus filhos na vila!\n\nParece que voce vai ter que participar de uma partida de domino para chegar ate o dragao… Assegurando o homem que voce vai derrotar o dragao e o libertar de seu tormento, voce senta na cadeira oposta a ele, que imediatamente prende seus pes no lugar. \n\nQue a partida comece…");
+
   for(int tentativas = 0; tentativas < 3; tentativas++){
 
       monte = criarMonte();
@@ -439,7 +442,7 @@ int puzzleDomino()
       clrscr();
 
       if(monteJogador == NULL){
-          printf("Vitoria!!!!");
+          printf("Vitoria!!!");
           return 1;
       }
       else if(monteComputador == NULL){

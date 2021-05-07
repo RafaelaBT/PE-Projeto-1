@@ -322,7 +322,7 @@ Cena *cena19()
 {
   Cena cena;
   cena.id = 21;
-  strcpy(cena.descricao, "");
+  strcpy(cena.descricao, "Voce se encontra andando por corredores interminaveis, que parecem se contorcer e mesclar uns aos outros. Ao pisar em uma das pedras do chao um alcapao escondido se abre fazendo com que voce caia em uma sala mal iluminada.");
   cena.tipo = 8;
   cena.cenaDeSucesso = cena21();
   cena.cenaDeFalha = cena20();
@@ -333,7 +333,7 @@ Cena *cena20()
 {
     Cena cena;
     cena.id = 22;
-    strcpy(cena.descricao, "");
+    strcpy(cena.descricao, "Voce olha o homem na sua frente colocando sua ultima peça no tabuleiro e murmurando “me desculpe” repetidas vezes antes de voce sentir uma dor aguda no pescoco e morrer.");
     cena.tipo = 3;
     return adicionarCena(cena);
 }
@@ -342,7 +342,7 @@ Cena *cena21()
 {
     Cena cena;
     cena.id = 23;
-    strcpy(cena.descricao, "");
+    strcpy(cena.descricao, "Colocando sua ultima peca no tabuleiro a cadeira solta seus pes e uma corda cai do buraco do alcapao. Com uma ultima olhada para o homem na sala voce promete o tirar do castelo e escala a corda de volta para o corredor.");
     cena.tipo = 0;
     cena.cenaDeSucesso = fibonacci1();
     return adicionarCena(cena);
