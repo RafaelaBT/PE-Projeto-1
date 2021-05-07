@@ -397,15 +397,17 @@ void limparMemoria(PecaDomino* monteParaApagar)
 
 int puzzleDomino()
 {
+  PecaDomino *monteJogador = NULL;
+  PecaDomino *monteComputador = NULL;
   for(int tentativas = 0; tentativas < 3; tentativas++){
 
       monte = criarMonte();
 
       //criar monte do jogador e do computador
-      PecaDomino *monteJogador = NULL;
+      monteJogador = NULL;
       monteJogador = comprarPecas(monteJogador, 7);
 
-      PecaDomino *monteComputador = NULL;
+      monteComputador = NULL;
       monteComputador = comprarPecas(monteComputador, 7);
 
       //iniciar o tabuleiro
@@ -433,8 +435,8 @@ int puzzleDomino()
           }
       }
 
-      system("pause");
-      system("cls");
+      waitForInput();
+      clrscr();
 
       if(monteJogador == NULL){
           printf("Vitoria!!!!");
@@ -447,7 +449,6 @@ int puzzleDomino()
           printf("Parece que foi um empate :(\n\nTente de novo...");
       }
     }
-
 
     limparMemoria(monte);
     limparMemoria(monteComputador);
