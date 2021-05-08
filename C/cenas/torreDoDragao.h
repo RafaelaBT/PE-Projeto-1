@@ -4,6 +4,7 @@
 #include "../puzzles/fibonacciPuzzle.h"
 #include "../puzzles/puzzlePocao.h"
 #include "../puzzles/puzzle-senha.h"
+#include "../puzzles/puzzle-sequencia.h"
 #include "../puzzles/palavrasPuzzle.h"
 #include "../puzzles/puzzleDomino.h"
 #include "cena.h"
@@ -34,6 +35,12 @@ Cena *cena19();
 Cena *cena20();
 Cena *cena21();
 Cena *cena22();
+//puzzle-sequencia -> cenas 23 a 27, ids 114 a 118
+Cena *cena23();
+Cena *cena24();
+Cena *cena25();
+Cena* cena26();
+Cena *cena27();
 Cena *imagemInicio();
 Cena *fibonacci1();
 Cena *fibonacci2();
@@ -344,7 +351,7 @@ Cena *cena21()
     cena.id = 23;
     strcpy(cena.descricao, "Colocando sua ultima peca no tabuleiro a cadeira solta seus pes e uma corda cai do buraco do alcapao. Com uma ultima olhada para o homem na sala voce promete o tirar do castelo e escala a corda de volta para o corredor.");
     cena.tipo = 0;
-    cena.cenaDeSucesso = fibonacci1();
+    cena.cenaDeSucesso = cena23();
     return adicionarCena(cena);
 }
 
@@ -357,6 +364,41 @@ Cena *cena22()
     cena.cenaDeSucesso = cena10();
     cena.cenaDeFalha = imagemDesmaio();
     return adicionarCena(cena);
+}
+
+Cena *cena23(){
+  Cena cena;
+  cena.id = 114;
+  strcpy(cena.descricao, "Após andar por mais um tempo, você encontra uma nova sala com uma música suave tocando, lhe hipnotizando a entrar... \n\nDentro dela você encontra uma caixinha de música dourada tocando a linda melodia, com uma pequena estátua de uma flor girando em seu interior. Ao lado da caixinha de música se encontra uma lira com um bilhete, que diz:\n\n\t\tPara por esta sala passar\n\t\ta melodia correta deve seguir.\n\t\tSe na tarefa fracassarr\n\t\teternamente a música irá prosseguir.\n\nAssim que encosta na lira você se sente em um transe e não consegue mais soltá-la, então a música para… Quando começar de novo é melhor seguir atentamente.");
+  cena.tipo = 0;
+  cena.cenaDeSucesso = cena24();
+  return adicionarCena(cena);
+}
+
+Cena *cena24(){
+  Cena cena;
+  cena.id = 115;
+  cena.tipo = 9;
+  cena.cenaDeFalha = cena25();
+  cena.cenaDeSucesso = cena26();
+  return adicionarCena(cena);
+}
+
+Cena *cena25(){
+  Cena cena;
+  cena.id = 116;
+  strcpy(cena.descricao, "Errando a última nota você pragueja a sua incapacidade musical e sente o transe ficando mais forte, você não consegue se mexer a não ser para tocar a lira. A música da caixinha continua, te forçando a tocar a lira para o resto dos seus dias.");
+  cena.tipo = 3;
+  return adicionarCena(cena);
+}
+
+Cena *cena26(){
+  Cena cena;
+  cena.id = 117;
+  strcpy(cena.descricao, "Tocando a última nota você sente seu corpo saindo do transe, você está livre. Parece que aquelas aulas de lira na infância não foram inúteis afinal! Silenciosamente agradecendo à sua mãe você sai da sala o mais rápido possível para não cair no encanto da música novamente, seguindo assim o seu caminho pelo castelo.");
+  cena.tipo = 0;
+  cena.cenaDeSucesso = fibonacci1();
+  return adicionarCena(cena);
 }
 
 Cena *fibonacci1()

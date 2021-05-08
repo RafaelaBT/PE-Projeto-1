@@ -27,6 +27,7 @@ typedef struct Cena
 6 - Palavras
 7 - Imagem ASCII
 8 - Dominó
+9 - Sequencia musical
 */
 
 int CURRENT_CENAS = 1; // The Cena 0 is reserved to the intro Cena tha is not a pointer.

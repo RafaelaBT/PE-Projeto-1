@@ -152,7 +152,7 @@ int puzzleSenha() {
     memcpy(errados, &numeros[3], 6 * sizeof(int));
 
     int ref[6][3];
-    int *refp = ref;
+    int *refp = &ref[0][0];
     for (int i = 0; i < 18; i++) {
         *(refp+i) = VAL_PAD_PUZZLESENHA;
     }
