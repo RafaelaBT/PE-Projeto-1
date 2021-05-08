@@ -93,6 +93,12 @@ void loopDeCenas(Cena cenaAtiva)
     sucesso = puzzleSequencia(0);
     return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
     break;
+  case 13:
+    clrscr();
+    exibirCena(cenaAtiva);
+    sucesso = puzzleJanken();
+    return loopDeCenas(proximaCenaPuzzle(cenaAtiva, sucesso));
+    break;
   default:
     printf("Erro de Cena: Tipo nao implementado");
     break;

@@ -2,6 +2,7 @@
 #define TORRE_DO_DRAGAO_H
 
 #include "../puzzles/fibonacciPuzzle.h"
+#include "../puzzles/jankenPuzzle.h"
 #include "../puzzles/puzzlePocao.h"
 #include "../puzzles/puzzle-senha.h"
 #include "../puzzles/puzzle-sequencia.h"
@@ -62,6 +63,10 @@ Cena *imagemPocoes();
 Cena *imagemDesmaio();
 Cena *imagemSenha();
 Cena *cenaSenha();
+Cena *janken1();
+Cena *janken2();
+Cena *janken3();
+Cena *janken4();
 
 Cena jogoTorreDoDragao()
 {
@@ -397,7 +402,7 @@ Cena *cena26(){
   cena.id = 117;
   strcpy(cena.descricao, "Tocando a última nota você sente seu corpo saindo do transe, você está livre. Parece que aquelas aulas de lira na infância não foram inúteis afinal! Silenciosamente agradecendo à sua mãe você sai da sala o mais rápido possível para não cair no encanto da música novamente, seguindo assim o seu caminho pelo castelo.");
   cena.tipo = 0;
-  cena.cenaDeSucesso = fibonacci1();
+  cena.cenaDeSucesso = janken1();
   return adicionarCena(cena);
 }
 
@@ -554,5 +559,46 @@ Cena *fibonacci13()
     strcpy(cena.descricao, "Você sente o calor do sol tocar sua pele enquanto se levanta e percebe uma moeda dourada no chão aonde apoiou a mão, seguindo com os olhos percebe que não é só uma, são várias, e olhando ao redor percebe que não são várias são pilhas, montes.\nE não são só moedas, são cálices, espadas, baús, joias, pratarias e toda sorte de item valioso.\n\nVocê percebe a temperatura e lembra que o sol não é tão quente assim normalmente, olha rapidamente ao redor e não vê chamas acesas, nem locais por onde entratria calor externo.\n\nApós um momento de concentração você escuta um som, e depois com uma pontada de pânico surgindo no peito entende que aquela é uma respiração.\n\nPesada.\nGrave.\nMaligna.\n\nFinalmente você percebe que está no lugar mais perigoso desse castelo.");
     return adicionarCena(cena);
 }
+
+
+Cena *janken1()
+{
+    Cena cena;
+    cena.id = 131;
+    cena.tipo = 0;
+    strcpy(cena.descricao, "Caminhando pelos corredores você se depara com uma luva em formato de mão flutuando. Você olha curioso mas deixa para lá. Conforme passa por ela a luva se move e te empurra de volta com força. \nSurpreso, você assume posição de batalha mas a luva não faz menção de atacar. Acima dela se desenham no ar palavras \n\n>> JANKEN MÁGICO << \n\nEscolha entre PEDRA, PAPEL ou TESOURA e dispute com a mão mágica. \nVença 5 partidas e poderá seguir. \nPerca 5 partidas e um fim terrível lhe aguarda. \n\nA mão se prepara e a disputa começa");
+    cena.cenaDeSucesso = janken2();
+    return adicionarCena(cena);
+}
+
+Cena *janken2()
+{
+    Cena cena;
+    cena.id = 132;
+    cena.tipo = 13;
+    strcpy(cena.descricao, "Um placar mágico aparece. Registrando tudo sem demora.\n");
+    cena.cenaDeFalha = janken3();
+    cena.cenaDeSucesso = janken4();
+    return adicionarCena(cena);
+}
+
+Cena *janken3()
+{
+    Cena cena;
+    cena.id = 133;
+    cena.tipo = 3;
+    strcpy(cena.descricao, "A mão te soca até você virar uma massa de pele, osso e sangue. Você morreu.");
+    return adicionarCena(cena);
+}
+
+Cena *janken4()
+{
+    Cena cena;
+    cena.id = 134;
+    cena.tipo = 3;
+    strcpy(cena.descricao, "A luva lhe faz um aperto de mão e aparentemente foca em continência te liberando passagem. Você não entende bem e segue seu caminho acumulando mais essa vitória");
+    return fibonacci1(cena);
+}
+
 
 #endif
